@@ -33,8 +33,13 @@
                         <li><a asp-controller="Home" asp-action="Index">Home</a></li>
                         <li><a asp-controller="Home" asp-action="About">About</a></li>
                         <li><a asp-controller="Home" asp-action="Contact">Contact</a></li>
-                        <li><a asp-controller="FavoriteSports" asp-action="Index">Edit Favorite Sports</a> </li>
-                        <li><a asp-controller="FavoriteSports" asp-action="Edit">Events </a> </li>
+                        @{
+                            if (User.Identity != null)
+                            {
+                                <li><a asp-controller="FavoriteSports" asp-action="Index">Edit Favorite Sports</a></li>
+                                <li><a asp-controller="FavoriteSports" asp-action="Edit">Events </a></li>
+                            }
+                        }                        
                     </ul>
                     @await Html.PartialAsync("_LoginPartial")
                 </div>
