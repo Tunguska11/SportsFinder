@@ -86,13 +86,15 @@
                     </div>
                 </div>
             </div>
-            <div @*id="page-content-wrapper"*@ class="container body-content">
+        <div id="page-content-wrapper">
+            <div class="container body-content">
                 @RenderBody()
                 <hr />
                 <footer>
                     <p>&copy; 2016 - SportsFinder</p>
                 </footer>
             </div>
+        </div>
 
             <environment names="Development">
                 <script src="~/lib/jquery/dist/jquery.js"></script>

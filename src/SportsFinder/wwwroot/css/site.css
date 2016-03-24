@@ -150,11 +150,12 @@ textarea {
 
     #page-content-wrapper {
         padding: 20px;
+        margin-left: 150px;
         position: relative;
     }
 
     #wrapper.toggled #page-content-wrapper {
         position: relative;
-        margin-right: 0;
+        margin-right: 50px;
     }
 }
