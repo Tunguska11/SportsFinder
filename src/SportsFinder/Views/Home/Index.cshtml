@@ -1,7 +1,7 @@
 ﻿@{
     ViewData["Title"] = "Home Page";
 }
-
+<script src="~/js/GoogleMaps.js"></script>
     
 <div id="myCarousel" class="carousel slide" data-ride="carousel" data-interval="6000">
     <ol class="carousel-indicators">
@@ -85,9 +85,67 @@
 <div class="col-md-12">
     @*// AIzaSyAG8diNyE5CdFVLOvf9u7NlVoi6aEk8SH8*@
 
-    <iframe width="600"
+    @*<iframe id="map" width="600"
             height="450"
             frameborder="0" style="border:0"
-            src="https://www.google.com/maps/embed/v1/place?key=AIzaSyAG8diNyE5CdFVLOvf9u7NlVoi6aEk8SH8
-    &q=Charlotte,+NC" allowfullscreen></iframe>
+            src="https://www.google.com/maps/embed/v1/place?key=AIzaSyAG8diNyE5CdFVLOvf9u7NlVoi6aEk8SH8&q=Charlotte,+NC" allowfullscreen></iframe>*@
+
+    <script type="text/javascript" src="https://maps.googleapis.com/maps/api/js?key=AIzaSyAG8diNyE5CdFVLOvf9u7NlVoi6aEk8SH8&callback=initialize"></script>
+    <script type="text/javascript">
+        function initialize() {
+            var homeLatlng = new google.maps.LatLng(35.2033533, -80.9796095); // Charlotte
+
+            var mapOptions = {
+                zoom: 10,
+                center: homeLatlng,
+                mapTypeId: google.maps.MapTypeId.ROADMAP
+            };
+
+            var map = new google.maps.Map(document.getElementById("map-canvas"), mapOptions);
+
+            var marker = new google.maps.Marker({
+                position: {lat: 35.2033533, lng:  -80.9796095},
+                map: map,
+                title: 'Charlotte!'
+            });
+
+            var marker = new google.maps.Marker({
+                position: { lat: 35.286337, lng: -80.742303 },
+                map: map,
+                title: 'Soccer!!'
+            });
+
+            var marker = new google.maps.Marker({ 
+                position: { lat: 35.373446, lng: -80.647546 },
+                map: map,
+                title: 'Rock Climbing!'
+            });
+
+            var marker = new google.maps.Marker({ 
+                position: { lat: 35.383244, lng: -80.827447 },
+                map: map,
+                title: 'Cricket!'
+            });
+        }
+
+        google.maps.event.addDomListener(window, 'load', initialize);
+    </script>
+    <div id="map-canvas" style="width: 600px; height: 600px"></div>
+    
+
+    @*<script src="https://maps.googleapis.com/maps/api/js?key=AIzaSyAG8diNyE5CdFVLOvf9u7NlVoi6aEk8SH8&callback=initMap"
+            async defer></script>
+
+    <div id="map"></div>
+    <script>
+      var map;
+      function initMap() {
+        map = new google.maps.Map(document.getElementById('map'), {
+          center: {lat: -34.397, lng: 150.644},
+          zoom: 8
+        });
+      }
+    </script>
+    <script src="https://maps.googleapis.com/maps/api/js?key=AIzaSyAG8diNyE5CdFVLOvf9u7NlVoi6aEk8SH8&callback=initMap"
+            async defer></script>*@
 </div>
