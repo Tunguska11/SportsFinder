@@ -90,9 +90,7 @@
             frameborder="0" style="border:0"
             src="https://www.google.com/maps/embed/v1/place?key=AIzaSyAG8diNyE5CdFVLOvf9u7NlVoi6aEk8SH8&q=Charlotte,+NC" allowfullscreen></iframe>*@
 
-    <div class="container">
-        <h2>Sports in Your Area</h2>
-    </div>
+    
 
     <script type="text/javascript" src="https://maps.googleapis.com/maps/api/js?key=AIzaSyAG8diNyE5CdFVLOvf9u7NlVoi6aEk8SH8&callback=initialize"></script>
     <script type="text/javascript">
@@ -134,7 +132,17 @@
 
         google.maps.event.addDomListener(window, 'load', initialize);
     </script>
-    <div id="map-canvas" style="width: 600px; height: 600px"></div>
+
+    @{
+        if (User.Identity.Name != null)
+        {
+            <div class="container">
+                <h2>Sports in Your Area</h2>
+            </div>
+            <div id="map-canvas" style="width: 600px; height: 600px"></div>
+        }
+    }
+    
     
 
     @*<script src="https://maps.googleapis.com/maps/api/js?key=AIzaSyAG8diNyE5CdFVLOvf9u7NlVoi6aEk8SH8&callback=initMap"
