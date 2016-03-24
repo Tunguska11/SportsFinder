@@ -159,3 +159,18 @@ textarea {
         margin-right: 50px;
     }
 }
+
+.my-list {
+    width: 60%;
+    margin-left: 200px;
+}
+
+.favorite-star {
+    width: 20px;
+    height: 20px;
+    float: right;
+}
+
+.favorites-button {
+    margin: 10px 0px 0px 185px;
+}

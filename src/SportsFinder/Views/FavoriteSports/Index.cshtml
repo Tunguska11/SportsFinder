@@ -1,20 +1,27 @@
-﻿@{
+﻿@model IEnumerable<SportsFinder.Models.Sport>
+
+@{
     ViewData["Title"] = "Favorite Sports";
 }
 
 <h1>Favorite Sports</h1>
 
 <div class="list-group">
-    <a href="#" class="list-group-item active">
+    <a href="#" class="list-group-item active my-list">
         Sports
     </a>
-    <a href="#" class="list-group-item">Baseball</a>
-    <a href="#" class="list-group-item">BasketBall</a>
-    <a href="#" class="list-group-item">Cricket</a>
-    <a href="#" class="list-group-item">Frisby Golf</a>
-    <a href="#" class="list-group-item">Hockey</a>
-    <a href="#" class="list-group-item">Mountain Biking</a>
-    <a href="#" class="list-group-item">Skateboarding</a>
-    <a href="#" class="list-group-item">Soccer</a>
-    <a href="#" class="list-group-item">Rock Climbing</a>
+
+
+    @foreach (var item in Model)
+    {        
+            <a class="list-group-item my-list">@item.Name
+                <img class="favorite-star" src="~/images/StartMenuFavorites.ico"/>
+            </a>        
+    }
+
+    <div class="container">
+        <button class="btn btn-primary favorites-button">Sumbit Favorites</button>
+    </div>
+    
+
 </div>
