@@ -1,7 +1,4 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Threading.Tasks;
+﻿using System.Linq;
 using Microsoft.AspNet.Mvc;
 using SportsFinder.Models;
 
@@ -11,6 +8,7 @@ namespace SportsFinder.Controllers
 {
     public class FavoriteSportsController : Controller
     {
+        // Dependency Injecting giving us the database context
         private ApplicationDbContext _context;
 
         public FavoriteSportsController(ApplicationDbContext context)
