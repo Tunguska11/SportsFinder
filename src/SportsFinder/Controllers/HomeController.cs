@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
 using Microsoft.AspNet.Mvc;
+using SportsFinder.Models;
 
 namespace SportsFinder.Controllers
 {
@@ -21,6 +22,14 @@ namespace SportsFinder.Controllers
         }
 
         public IActionResult Contact()
+        {
+            ViewData["Message"] = "Created by James Stell, Thomas Neil K, Hardik Thakkar & Gabriel Stevens";
+
+            return View();
+        }
+
+
+        public IActionResult UserProfile()
         {
             ViewData["Message"] = "Created by James Stell, Thomas Neil K, Hardik Thakkar & Gabriel Stevens";
 
