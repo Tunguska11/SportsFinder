@@ -10,6 +10,20 @@
     function getFavorites() {
         console.log(arr);
 
+        var datta = {
+            'data': JSON.stringify(arr)
+        }
+
+        $.ajax({
+            url: "/FavoriteSports/MyMethod",
+            type: "POST",
+            dataType: "json",
+            data: datta,
+            success: function (mydata) {
+                $("#UpdateDiv").html(mydata);
+                history.pushState('', "New URL:");
+            }
+        });
     }
 </script>
 
@@ -38,6 +52,8 @@
     <p>Feature Coming Soon! Not working yet</p>
 
 </div>
+
+<div id="UpdateDiv"></div>
 
 
 

@@ -2,6 +2,7 @@
 using Microsoft.AspNet.Mvc;
 using SportsFinder.Models;
 using System;
+using System.Text.RegularExpressions;
 
 // For more information on enabling MVC for empty projects, visit http://go.microsoft.com/fwlink/?LinkID=397860
 
@@ -29,9 +30,27 @@ namespace SportsFinder.Controllers
             return View();
         }
 
-        public void MyMethod()
+        [HttpPost]
+        public ActionResult MyMethod(string data)
         {
-            System.Diagnostics.Debug.WriteLine("My method called");
+            string[] strarr = data.Split(',');
+
+            for (int i = 0; i < strarr.Length; i++)
+            {
+                System.Diagnostics.Debug.WriteLine(i + " " + strarr[i]);
+            }
+
+            Regex parser = new Regex(@"([a-z:A-Z:\s]+)");
+            Match match = parser.Match(data);
+
+
+            while (match.Success)
+            {
+                System.Diagnostics.Debug.WriteLine("Match Value = " + match.Value);
+                match = match.NextMatch();
+            }
+
+            return Json("This is my data " + data);
         }
     }
 }
