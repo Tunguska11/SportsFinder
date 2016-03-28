@@ -11,5 +11,8 @@ namespace SportsFinder.Models
     {
         //public string[] SportsList { get; set; }
         public string City { get; set; }
+
+        // collection of sports for favorites
+        public string FavoriteSports { get; set; }
     }
 }
