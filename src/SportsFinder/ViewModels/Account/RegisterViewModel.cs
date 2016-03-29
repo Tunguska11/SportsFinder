@@ -25,8 +25,5 @@ namespace SportsFinder.ViewModels.Account
         public string ConfirmPassword { get; set; }
         
         public string City { get; set; }
-
-        [Display(Name = "Sports List")]
-        public string[] SportsList { get; set; }
     }
 }

@@ -34,6 +34,7 @@ namespace SportsFinder.Controllers
         public ActionResult MyMethod(string data)
         {
             string[] strarr = data.Split(',');
+            string sportsList = "";
 
             for (int i = 0; i < strarr.Length; i++)
             {
@@ -47,8 +48,12 @@ namespace SportsFinder.Controllers
             while (match.Success)
             {
                 System.Diagnostics.Debug.WriteLine("Match Value = " + match.Value);
+                sportsList += match.Value + "|";
                 match = match.NextMatch();
             }
+
+            System.Diagnostics.Debug.WriteLine("List to save = " + sportsList);
+
 
             return Json("This is my data " + data);
         }
