@@ -25,9 +25,20 @@ namespace SportsFinder.Controllers
             return View(_context.Sport.ToList());
         }
 
+
+        
+
         public IActionResult Edit()
         {
+
+             
+
             return View();
+        }
+
+        private IActionResult View(object p)
+        {
+            throw new NotImplementedException();
         }
 
         [HttpPost]

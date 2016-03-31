@@ -16,6 +16,12 @@ namespace SportsFinder.Controllers
     [Authorize]
     public class ManageController : Controller
     {
+        private ApplicationDbContext _context;
+
+        public ManageController(ApplicationDbContext context)
+        {
+            _context = context;
+        }
         private readonly UserManager<ApplicationUser> _userManager;
         private readonly SignInManager<ApplicationUser> _signInManager;
         private readonly IEmailSender _emailSender;

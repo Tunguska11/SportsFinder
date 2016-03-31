@@ -1,4 +1,4 @@
-﻿{
+{
   "userSecretsId": "aspnet5-SportsFinder-712334b2-5be2-4a00-9b54-e967ec52bee9",
   "version": "1.0.0-*",
   "compilationOptions": {
@@ -21,11 +21,13 @@
     "Microsoft.Extensions.Configuration.FileProviderExtensions": "1.0.0-rc1-final",
     "Microsoft.Extensions.Configuration.Json": "1.0.0-rc1-final",
     "Microsoft.Extensions.Configuration.UserSecrets": "1.0.0-rc1-final",
-    "Microsoft.Extensions.DependencyInjection": "1.0.0-rc1-final",  
+    "Microsoft.Extensions.DependencyInjection": "1.0.0-rc1-final",
     "Microsoft.Extensions.Logging": "1.0.0-rc1-final",
     "Microsoft.Extensions.Logging.Console": "1.0.0-rc1-final",
     "Microsoft.Extensions.Logging.Debug": "1.0.0-rc1-final",
-    "Microsoft.VisualStudio.Web.BrowserLink.Loader": "14.0.0-rc1-final"
+    "Microsoft.VisualStudio.Web.BrowserLink.Loader": "14.0.0-rc1-final",
+    "System.Linq": "4.0.1-beta-23516",
+    "System.Linq.Parallel": "4.0.1-beta-23516"
   },
 
   "commands": {
