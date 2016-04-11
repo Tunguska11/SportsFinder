@@ -1,4 +1,6 @@
-﻿@{
+﻿@model IEnumerable<SportsFinder.Models.SportEvent>
+
+@{
     ViewData["Title"] = "Home Page";
 }
 <script src="~/js/GoogleMaps.js"></script>
@@ -92,8 +94,11 @@
 
     
 
-    <script type="text/javascript" src="https://maps.googleapis.com/maps/api/js?key=AIzaSyAG8diNyE5CdFVLOvf9u7NlVoi6aEk8SH8&callback=initialize"></script>
+    <script type="text/javascript" src="https://maps.googleapis.com/maps/api/js?key=AIzaSyAG8diNyE5CdFVLOvf9u7NlVoi6aEk8SH8"></script>
     <script type="text/javascript">
+
+        var map;
+
         function initialize() {
             var homeLatlng = new google.maps.LatLng(35.2033533, -80.9796095); // Charlotte
 
@@ -103,7 +108,7 @@
                 mapTypeId: google.maps.MapTypeId.ROADMAP
             };
 
-            var map = new google.maps.Map(document.getElementById("map-canvas"), mapOptions);
+            map = new google.maps.Map(document.getElementById("map-canvas"), mapOptions);
 
             var marker = new google.maps.Marker({
                 position: {lat: 35.2033533, lng:  -80.9796095},
@@ -111,24 +116,62 @@
                 title: 'Charlotte!'
             });
 
-            var marker = new google.maps.Marker({
-                position: { lat: 35.286337, lng: -80.742303 },
-                map: map,
-                title: 'Soccer!!'
-            });
+            @foreach (var item in Model)
+            {
+                //@:addMarker(@item.Latitude, @item.Longitude, map, @item.EventSport);
+                <text>
+            console.log('Item Name -> ' + '@(item.EventSport)' + '\n' +
+                    'Lat -> ' + '@(item.Latitude)' + '\n' +
+                    'Lon -> ' + '@(item.Longitude)'
+                );
 
-            var marker = new google.maps.Marker({ 
-                position: { lat: 35.373446, lng: -80.647546 },
-                map: map,
-                title: 'Rock Climbing!'
-            });
+                    var latLng = new google.maps.LatLng(@(item.Latitude), @(item.Longitude));
 
-            var marker = new google.maps.Marker({ 
-                position: { lat: 35.383244, lng: -80.827447 },
-                map: map,
-                title: 'Cricket!'
-            });
+                    var marker = new google.maps.Marker({
+                        //position: { lat: '@(item.Latitude)', lng: '@(item.Longitude)' },
+                        position: latLng,
+                        map: map,
+                        title: '@(item.EventSport)'
+                    });
+                </text>
+            }
+
+            //var marker = new google.maps.Marker({
+            //    position: { lat: 35.286337, lng: -80.742303 },
+            //    map: map,
+            //    title: 'Soccer!!'
+            //});
+
+            //var marker = new google.maps.Marker({
+            //    position: { lat: 35.373446, lng: -80.647546 },
+            //    map: map,
+            //    title: 'Rock Climbing!'
+            //});
+
+            //var marker = new google.maps.Marker({
+            //    position: { lat: 35.383244, lng: -80.827447 },
+            //    map: map,
+            //    title: 'Cricket!'
+            //});
         }
+
+        //function addMarker(latitude, longitude, map, title) {
+
+        //    var marker = new google.maps.Marker({
+        //        position: { lat: latitude, lng: longitude },
+        //        map: map,
+        //        title: title
+        //    });
+
+        //    //google.maps.event.addListener(marker, 'click', function () {
+        //    //    infowindow.open(map, marker);
+        //    //});
+        //}
+
+        @*@foreach (var item in Model)
+        {
+            @:addMarker(@item.Latitude, @item.Longitude, map, @item.EventSport);
+        }*@
 
         google.maps.event.addDomListener(window, 'load', initialize);
     </script>

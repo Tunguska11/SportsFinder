@@ -9,9 +9,16 @@ namespace SportsFinder.Controllers
 {
     public class HomeController : Controller
     {
+        private ApplicationDbContext _context;
+
+        public HomeController(ApplicationDbContext context)
+        {
+            _context = context;
+        }
+
         public IActionResult Index()
         {
-            return View();
+            return View(_context.SportEvent.ToList());
         }
 
         public IActionResult About()
