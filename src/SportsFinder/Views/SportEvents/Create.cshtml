@@ -8,56 +8,61 @@
 
 <form asp-action="Create">
     <div class="form-horizontal">
-        <h4>SportEvent</h4>
+        <h4>New Sport Event</h4>
         <hr />
         <div asp-validation-summary="ValidationSummary.ModelOnly" class="text-danger"></div>
         <div class="form-group">
             <label asp-for="EquipmentList" class="col-md-2 control-label"></label>
             <div class="col-md-10">
-                <input asp-for="EquipmentList" class="form-control" />
+                <input asp-for="EquipmentList" class="form-control" style="float: left" placeholder="ex: harness, climbing shoes, chalk" />
+                <p class="col-md-3" style="float: left">(comma separated list)</p>
                 <span asp-validation-for="EquipmentList" class="text-danger" />
             </div>
         </div>
         <div class="form-group">
             <label asp-for="EventSport" class="col-md-2 control-label"></label>
             <div class="col-md-10">
-                <input asp-for="EventSport" class="form-control" />
+                <input asp-for="EventSport" class="form-control" placeholder="Rock Climbing" />
                 <span asp-validation-for="EventSport" class="text-danger" />
             </div>
         </div>
         <div class="form-group">
             <label asp-for="EventTime" class="col-md-2 control-label"></label>
             <div class="col-md-10">
-                <input asp-for="EventTime" class="form-control" />
+                <input asp-for="EventTime" class="form-control" placeholder="4/11/2016 5:15 pm" />
                 <span asp-validation-for="EventTime" class="text-danger" />
             </div>
         </div>
         <div class="form-group">
-            <div class="col-md-offset-2 col-md-10">
+            <label asp-for="IsTentative" class="col-md-2 control-label"></label>
+            <div class="col-md-offset-3 checkbox">
+                <input asp-for="IsTentative" />
+            </div>
+            @*<div class="col-md-offset-2 col-md-10">
                 <div class="checkbox">
                     <input asp-for="IsTentative" />
                     <label asp-for="IsTentative"></label>
                 </div>
-            </div>
+            </div>*@
         </div>
         <div class="form-group">
             <label asp-for="Latitude" class="col-md-2 control-label"></label>
             <div class="col-md-10">
-                <input asp-for="Latitude" class="form-control" />
+                <input asp-for="Latitude" class="form-control" placeholder="35.330037" />
                 <span asp-validation-for="Latitude" class="text-danger" />
             </div>
         </div>
         <div class="form-group">
             <label asp-for="Longitude" class="col-md-2 control-label"></label>
             <div class="col-md-10">
-                <input asp-for="Longitude" class="form-control" />
+                <input asp-for="Longitude" class="form-control" placeholder="-80.729588" />
                 <span asp-validation-for="Longitude" class="text-danger" />
             </div>
         </div>
         <div class="form-group">
             <label asp-for="MaxPeopleAllowed" class="col-md-2 control-label"></label>
             <div class="col-md-10">
-                <input asp-for="MaxPeopleAllowed" class="form-control" />
+                <input asp-for="MaxPeopleAllowed" class="form-control" placeholder="22" />
                 <span asp-validation-for="MaxPeopleAllowed" class="text-danger" />
             </div>
         </div>
@@ -77,7 +82,7 @@
 </form>
 
 <div>
-    <a asp-action="Index">Back to List</a>
+    <a asp-action="Index" class="btn btn-info">Back to List</a>
 </div>
 
 @section Scripts {
