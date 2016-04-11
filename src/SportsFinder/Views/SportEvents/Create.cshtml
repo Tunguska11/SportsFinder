@@ -38,8 +38,13 @@
             </div>
         </div>
 
+
+
         <div class="form-group">
             <label asp-for="EventTime" class="col-md-2 control-label"></label>
+
+
+
 
             <div class="container">
                 <div class="row">
@@ -48,6 +53,13 @@
                     </div>
                 </div>
             </div>
+
+
+
+            @*<div class='col-md-10'>
+                <input asp-for="EventTime" type='text' class="form-control" id='datetimepicker' />
+                <span asp-validation-for="EventTime" class="text-danger" />
+            </div>*@
 
 
 
@@ -142,12 +154,6 @@
 </div>
 
 
-<script type="text/javascript">
-    $(function () {
-        $('#datetimepicker').datetimepicker();
-    });
-</script>
-
 
 <script type="text/javascript" src="https://maps.googleapis.com/maps/api/js?key=AIzaSyAG8diNyE5CdFVLOvf9u7NlVoi6aEk8SH8"></script>
 <script type="text/javascript">
@@ -204,4 +210,10 @@
     <script src="~/lib/jquery/dist/jquery.min.js"></script>
     <script src="~/lib/jquery-validation/dist/jquery.validate.min.js"></script>
     <script src="~/lib/jquery-validation-unobtrusive/jquery.validate.unobtrusive.min.js"></script>
+<script type="text/javascript">
+    $(document).ready(function () {
+        console.log("ready!");
+        $('#datetimepicker').datetimepicker();
+    });
+</script>
 }
