@@ -103,12 +103,36 @@
             var homeLatlng = new google.maps.LatLng(35.2033533, -80.9796095); // Charlotte
 
             var mapOptions = {
-                zoom: 10,
+                zoom: 12,
                 center: homeLatlng,
                 mapTypeId: google.maps.MapTypeId.ROADMAP
             };
 
             map = new google.maps.Map(document.getElementById("map-canvas"), mapOptions);
+
+            map.addListener('click', function(e) {
+                console.log(e.latLng.toString());
+            });
+
+            var infoWindow = new google.maps.InfoWindow({map: map});
+
+            if (navigator.geolocation) {
+                navigator.geolocation.getCurrentPosition(function(position) {
+                    var pos = {
+                        lat: position.coords.latitude,
+                        lng: position.coords.longitude
+                    };
+
+                    infoWindow.setPosition(pos);
+                    infoWindow.setContent('Your Location');
+                    map.setCenter(pos);
+                }, function() {
+                    handleLocationError(true, infoWindow, map.getCenter());
+                });
+            } else {
+                // Browser doesn't support Geolocation
+                handleLocationError(false, infoWindow, map.getCenter());
+            }
 
             var marker = new google.maps.Marker({
                 position: {lat: 35.2033533, lng:  -80.9796095},
