@@ -5,7 +5,7 @@ using Microsoft.Data.Entity.Metadata;
 
 namespace SportsFinder.Migrations
 {
-    public partial class Initial : Migration
+    public partial class SportEvent : Migration
     {
         protected override void Up(MigrationBuilder migrationBuilder)
         {
@@ -60,6 +60,25 @@ namespace SportsFinder.Migrations
                 constraints: table =>
                 {
                     table.PrimaryKey("PK_Sport", x => x.ID);
+                });
+            migrationBuilder.CreateTable(
+                name: "SportEvent",
+                columns: table => new
+                {
+                    ID = table.Column<int>(nullable: false)
+                        .Annotation("SqlServer:ValueGenerationStrategy", SqlServerValueGenerationStrategy.IdentityColumn),
+                    EquipmentList = table.Column<string>(nullable: true),
+                    EventSport = table.Column<string>(nullable: true),
+                    EventTime = table.Column<DateTime>(nullable: false),
+                    IsTentative = table.Column<bool>(nullable: false),
+                    Latitude = table.Column<double>(nullable: false),
+                    Longitude = table.Column<double>(nullable: false),
+                    MaxPeopleAllowed = table.Column<int>(nullable: false),
+                    PplAttendingCount = table.Column<int>(nullable: false)
+                },
+                constraints: table =>
+                {
+                    table.PrimaryKey("PK_SportEvent", x => x.ID);
                 });
             migrationBuilder.CreateTable(
                 name: "AspNetRoleClaims",
@@ -183,6 +202,7 @@ namespace SportsFinder.Migrations
             migrationBuilder.DropTable("AspNetUserLogins");
             migrationBuilder.DropTable("AspNetUserRoles");
             migrationBuilder.DropTable("Equipment");
+            migrationBuilder.DropTable("SportEvent");
             migrationBuilder.DropTable("AspNetRoles");
             migrationBuilder.DropTable("AspNetUsers");
             migrationBuilder.DropTable("Sport");

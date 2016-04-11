@@ -18,5 +18,6 @@ namespace SportsFinder.Models
             // Add your customizations after calling base.OnModelCreating(builder);
         }
         public DbSet<Sport> Sport { get; set; }
+        public DbSet<SportEvent> SportEvent { get; set; }
     }
 }

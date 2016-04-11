@@ -8,8 +8,8 @@ using SportsFinder.Models;
 namespace SportsFinder.Migrations
 {
     [DbContext(typeof(ApplicationDbContext))]
-    [Migration("20160328195640_Initial")]
-    partial class Initial
+    [Migration("20160411173153_SportEvent")]
+    partial class SportEvent
     {
         protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
@@ -171,6 +171,30 @@ namespace SportsFinder.Migrations
                     b.Property<string>("Name");
 
                     b.Property<string>("Type");
+
+                    b.HasKey("ID");
+                });
+
+            modelBuilder.Entity("SportsFinder.Models.SportEvent", b =>
+                {
+                    b.Property<int>("ID")
+                        .ValueGeneratedOnAdd();
+
+                    b.Property<string>("EquipmentList");
+
+                    b.Property<string>("EventSport");
+
+                    b.Property<DateTime>("EventTime");
+
+                    b.Property<bool>("IsTentative");
+
+                    b.Property<double>("Latitude");
+
+                    b.Property<double>("Longitude");
+
+                    b.Property<int>("MaxPeopleAllowed");
+
+                    b.Property<int>("PplAttendingCount");
 
                     b.HasKey("ID");
                 });
