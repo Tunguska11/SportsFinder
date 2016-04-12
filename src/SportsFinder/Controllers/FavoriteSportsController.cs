@@ -63,8 +63,8 @@ namespace SportsFinder.Controllers
             user.FavoriteSports = sportsList;
             _context.Update(user);
             _context.SaveChanges();
-            
-            return RedirectToAction("Index");
+
+            return Json("Favorite Sports Saved!");
         }
     }
 }
