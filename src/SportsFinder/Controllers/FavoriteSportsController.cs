@@ -3,6 +3,9 @@ using Microsoft.AspNet.Mvc;
 using SportsFinder.Models;
 using System;
 using System.Text.RegularExpressions;
+using System.Security.Claims;
+using Microsoft.AspNet.Identity;
+using Microsoft.AspNet.Identity.EntityFramework;
 
 // For more information on enabling MVC for empty projects, visit http://go.microsoft.com/fwlink/?LinkID=397860
 
@@ -12,10 +15,12 @@ namespace SportsFinder.Controllers
     {
         // Dependency Injecting giving us the database context
         private ApplicationDbContext _context;
+        private UserManager<ApplicationUser> _userManager;
 
-        public FavoriteSportsController(ApplicationDbContext context)
+        public FavoriteSportsController(ApplicationDbContext context, UserManager<ApplicationUser> userManager)
         {
             _context = context;
+            _userManager = userManager;
         }
 
         // GET: /<controller>/
@@ -31,7 +36,7 @@ namespace SportsFinder.Controllers
         }
 
         [HttpPost]
-        public ActionResult MyMethod(string data)
+        public IActionResult MyMethod(string data)
         {
             string[] strarr = data.Split(',');
             string sportsList = "";
@@ -54,8 +59,12 @@ namespace SportsFinder.Controllers
 
             System.Diagnostics.Debug.WriteLine("List to save = " + sportsList);
 
-
-            return Json("This is my data " + data);
+            ApplicationUser user = _context.Users.First(u => u.Id == User.GetUserId());
+            user.FavoriteSports = sportsList;
+            _context.Update(user);
+            _context.SaveChanges();
+            
+            return RedirectToAction("Index");
         }
     }
 }
