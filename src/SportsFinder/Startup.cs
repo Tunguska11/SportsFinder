@@ -11,6 +11,7 @@ using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Extensions.Logging;
 using SportsFinder.Models;
 using SportsFinder.Services;
+using SportsFinder.Data;
 
 namespace SportsFinder
 {
@@ -42,7 +43,9 @@ namespace SportsFinder
             services.AddEntityFramework()
                 .AddSqlServer()
                 .AddDbContext<ApplicationDbContext>(options =>
-                    options.UseSqlServer(Configuration["Data:DefaultConnection:ConnectionString"]));
+                    options.UseSqlServer(Configuration["Data:DefaultConnection:ConnectionString"]))
+                .AddDbContext<TestDbContext>(options =>
+                    options.UseInMemoryDatabase()); // to use test db in memory
 
             services.AddIdentity<ApplicationUser, IdentityRole>()
                 .AddEntityFrameworkStores<ApplicationDbContext>()
