@@ -1,4 +1,4 @@
-﻿{
+{
   "userSecretsId": "aspnet5-SportsFinder-712334b2-5be2-4a00-9b54-e967ec52bee9",
   "version": "1.0.0-*",
   "compilationOptions": {
@@ -6,11 +6,8 @@
   },
 
   "dependencies": {
-    "Bootstrap.v3.Datetimepicker": "4.15.35.1",
-    "Bootstrap.v3.Datetimepicker.CSS": "4.15.35",
     "EntityFramework.Commands": "7.0.0-rc1-final",
     "EntityFramework.MicrosoftSqlServer": "7.0.0-rc1-final",
-    "jQuery": "2.2.2",
     "Microsoft.AspNet.Authentication.Cookies": "1.0.0-rc1-final",
     "Microsoft.AspNet.Diagnostics.Entity": "7.0.0-rc1-final",
     "Microsoft.AspNet.Identity.EntityFramework": "3.0.0-rc1-final",
@@ -28,8 +25,7 @@
     "Microsoft.Extensions.Logging": "1.0.0-rc1-final",
     "Microsoft.Extensions.Logging.Console": "1.0.0-rc1-final",
     "Microsoft.Extensions.Logging.Debug": "1.0.0-rc1-final",
-    "Microsoft.VisualStudio.Web.BrowserLink.Loader": "14.0.0-rc1-final",
-    "Moment.js": "2.12.0"
+    "Microsoft.VisualStudio.Web.BrowserLink.Loader": "14.0.0-rc1-final"
   },
 
   "commands": {
