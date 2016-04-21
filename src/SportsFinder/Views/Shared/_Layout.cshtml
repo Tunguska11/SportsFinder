@@ -21,7 +21,7 @@
         @{
             if (User.Identity.Name != null)
             {
-                <div id="sidebar-wrapper">
+                <div id="sidebar-wrapper" style="width: 20%; padding: 10px; float: left">
                     <ul class="sidebar-nav">
                         <li class="sidebar-brand">
                             <a>
@@ -87,7 +87,7 @@
                 </div>
             </div>
         <div id="page-content-wrapper">
-            <div class="container body-content">
+            <div class="container body-content" style="margin-left: 20%;">
                 @RenderBody()
                 <hr />
                 <footer>

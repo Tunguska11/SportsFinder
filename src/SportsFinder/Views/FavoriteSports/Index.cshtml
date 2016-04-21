@@ -91,6 +91,9 @@
                 image.className = "favorite-star";
                 image.id = "star";
                 target.appendChild(image);
+            } else {
+                var img = document.getElementById("star");
+                target.removeChild(img);
             }
         };
     });
