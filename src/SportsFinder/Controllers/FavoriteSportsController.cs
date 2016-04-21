@@ -27,6 +27,7 @@ namespace SportsFinder.Controllers
         public IActionResult Index()
         {
             System.Diagnostics.Debug.WriteLine("In Index");
+            ViewData["User"] = _context.Users.First(u => u.Id == User.GetUserId());
             return View(_context.Sport.ToList());
         }
 

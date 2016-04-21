@@ -2,6 +2,7 @@
 
 @{
     ViewData["Title"] = "Favorite Sports";
+    var MyUser = (ApplicationUser)ViewData["User"];
 }
 
 @* This javascript is just so it has scope for below html *@
@@ -40,7 +41,7 @@
 
         @foreach (var item in Model)
         {
-            <li class="list-group-item my-list">@item.Name</li>
+            <li class="list-group-item my-list" id="list-item-@item.Name">@item.Name</li>
         }
 
     </ul>
@@ -61,6 +62,30 @@
     window.addEventListener('load', function () {
         console.log('window has loaded');
 
+        console.log('@(MyUser.FavoriteSports)');
+
+        var favoriteSports = '@(MyUser.FavoriteSports)';
+        var favSportsList = favoriteSports.split('|');
+        var length = favoriteSports.length;
+
+        for (var i = 0; i < length; i++) {            
+
+            var li = document.getElementById('list-item-' + favSportsList[i]);
+            
+            
+
+            var image = document.createElement("img");
+            image.src = "/images/StartMenuFavorites.ico";
+            image.className = "favorite-star";
+            image.id = "star";
+            if (li !== null) {
+                if (!arr.includes(li.innerHTML))
+                    arr.push(li.innerHTML);
+                li.appendChild(image);
+            }
+                
+        }
+
         // IE does not know about the target attribute. It looks for srcElement
         // This function will get the event target in a browser-compatible way
         function getEventTarget(e) {
@@ -74,7 +99,7 @@
             event.preventDefault;
             var target = getEventTarget(event);
 
-            console.log(target);            
+            console.log("Target -> " + target);
 
             if (target.hasChildNodes)
                 console.log("has child");
@@ -92,7 +117,8 @@
                 image.id = "star";
                 target.appendChild(image);
             } else {
-                var img = document.getElementById("star");
+                console.log("in else");
+                var img = target.querySelector("#star");
                 target.removeChild(img);
             }
         };
