@@ -6,6 +6,11 @@
 
 <h2>Details</h2>
 
+@{ 
+    string Equipment = Model.EquipmentList;
+    string[] EquipArray = Equipment.Split(',');
+}
+
 <div>
     <h4>SportEvent</h4>
     <hr />
@@ -13,9 +18,18 @@
         <dt>
             @Html.DisplayNameFor(model => model.EquipmentList)
         </dt>
-        <dd>
+        @*<dd>
             @Html.DisplayFor(model => model.EquipmentList)
+        </dd>*@
+        <dd>
+            @foreach (string item in EquipArray)
+            {
+                <div class="checkbox">
+                    <label><input type="checkbox" value="" />@(item)</label>
+                </div>
+            }
         </dd>
+
         <dt>
             @Html.DisplayNameFor(model => model.EventSport)
         </dt>
