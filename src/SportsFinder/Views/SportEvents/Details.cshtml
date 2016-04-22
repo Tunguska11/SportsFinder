@@ -22,14 +22,16 @@
             @Html.DisplayFor(model => model.EquipmentList)
         </dd>*@
         <dd>
-            <div class="checkbox" id="equipment-list">
+            <div class="checkbox" id="equipment-list" style="float: left">
                 @foreach (string item in EquipArray)
                 {
                     <div>
                         <label><input type="checkbox" value="@(item)" />@(item)</label>
                     </div>
-
                 }
+            </div>
+            <div style="margin-top: 30px; margin-left: 20%">
+                <a class="btn btn-primary" id="commit-equipment-change">Bring Equipment</a>
             </div>
         </dd>
 
@@ -138,12 +140,17 @@
             console.log(target.value);
         };
 
+        var bringEquipmentButton = document.getElementById('commit-equipment-change');
+        bringEquipmentButton.onclick = function () {
+            console.log('clicked button');
+        }
+
     });
     
 
 </script>
 
 <p>
-    <a asp-action="Edit" asp-route-id="@Model.ID" class="btn btn-danger">Edit</a> |
+    @*<a asp-action="Edit" asp-route-id="@Model.ID" class="btn btn-danger">Edit</a> |*@
     <a asp-action="Index" class="btn btn-primary">Back to List</a>
 </p>

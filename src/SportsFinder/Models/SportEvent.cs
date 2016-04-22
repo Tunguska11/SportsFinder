@@ -21,7 +21,7 @@ namespace SportsFinder.Models
         public double Longitude { get; set; }
         public double Latitude { get; set; }
 
-        [Display(Name = "# People Attending")]
+        [Display(Name = "Num People Attending")]
         public int PplAttendingCount { get; set; }
 
         [Display(Name = "Max People Allowed")]
