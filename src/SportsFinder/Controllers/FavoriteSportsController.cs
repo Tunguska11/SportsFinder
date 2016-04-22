@@ -37,7 +37,7 @@ namespace SportsFinder.Controllers
         }
 
         [HttpPost]
-        public IActionResult MyMethod(string data)
+        public IActionResult SaveFavoriteSports(string data)
         {
             string[] strarr = data.Split(',');
             string sportsList = "";

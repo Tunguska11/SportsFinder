@@ -138,7 +138,8 @@
 <script type="text/javascript" src="https://maps.googleapis.com/maps/api/js?key=AIzaSyAG8diNyE5CdFVLOvf9u7NlVoi6aEk8SH8"></script>
 <script type="text/javascript">
 
-        var map;
+    var map;
+    var mapMarkers = [];
 
         function initialize() {
             var homeLatlng = new google.maps.LatLng(35.2033533, -80.9796095); // Charlotte
@@ -151,15 +152,25 @@
 
             map = new google.maps.Map(document.getElementById("map-canvas"), mapOptions);
 
-            map.addListener('click', function(e) {
-                console.log(e.latLng.toString());
+            map.addListener('click', function (e) {
+                
                 var latbox = document.getElementById('lattd');
                 latbox.value = e.latLng.lat();
 
                 var lonbox = document.getElementById('lontd');
                 lonbox.value = e.latLng.lng();
 
-                console.log(e.latLng.lat());
+                for (var i = 0; i < mapMarkers.length; i++) {
+                    mapMarkers[i].setMap(null);
+                }
+
+                var marker = new google.maps.Marker({
+                    position: { lat: e.latLng.lat(), lng: e.latLng.lng() },
+                    map: map,
+                    title: 'Your Event Location!'
+                });
+
+                mapMarkers.push(marker);
             });
 
             var infoWindow = new google.maps.InfoWindow({map: map});

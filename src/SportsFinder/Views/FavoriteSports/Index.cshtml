@@ -9,14 +9,13 @@
 <script type="text/javascript">
     var arr = [];
     function getFavorites() {
-        console.log(arr);
 
         var datta = {
             'data': JSON.stringify(arr)
         }
 
         $.ajax({
-            url: "/FavoriteSports/MyMethod",
+            url: "/FavoriteSports/SaveFavoriteSports",
             type: "POST",
             dataType: "json",
             data: datta,
