@@ -60,7 +60,50 @@
         </dd>
     </dl>
 </div>
+
+<div class="container" style="margin: 20px">
+    <div id="map-canvas" style="width: 600px; height: 400px"></div>
+</div>
+
+<script type="text/javascript" src="https://maps.googleapis.com/maps/api/js?key=AIzaSyAG8diNyE5CdFVLOvf9u7NlVoi6aEk8SH8"></script>
+<script type="text/javascript">
+
+    var googleMap;
+    var modelLat;
+    var modelLng;
+    var eventTitle;
+
+    modelLat = '@(Model.Latitude)';
+    modelLng = '@(Model.Longitude)';
+    title = '@(Model.EventSport)';
+
+    function initialize() {
+
+        var location = {
+            lat: parseFloat(modelLat),
+            lng: parseFloat(modelLng)
+        };
+
+        var mapOptions = {
+            zoom: 12,
+            center: location,
+            mapTypeId: google.maps.MapTypeId.ROADMAP
+        };
+
+        googleMap = new google.maps.Map(document.getElementById("map-canvas"), mapOptions);
+
+        var marker = new google.maps.Marker({
+            position: location,
+            map: googleMap,
+            title: eventTitle
+        });
+    }
+
+    google.maps.event.addDomListener(window, 'load', initialize);
+
+</script>
+
 <p>
-    <a asp-action="Edit" asp-route-id="@Model.ID">Edit</a> |
-    <a asp-action="Index">Back to List</a>
+    <a asp-action="Edit" asp-route-id="@Model.ID" class="btn btn-danger">Edit</a> |
+    <a asp-action="Index" class="btn btn-primary">Back to List</a>
 </p>
