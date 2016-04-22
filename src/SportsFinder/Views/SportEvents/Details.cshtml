@@ -22,12 +22,15 @@
             @Html.DisplayFor(model => model.EquipmentList)
         </dd>*@
         <dd>
-            @foreach (string item in EquipArray)
-            {
-                <div class="checkbox">
-                    <label><input type="checkbox" value="" />@(item)</label>
-                </div>
-            }
+            <div class="checkbox" id="equipment-list">
+                @foreach (string item in EquipArray)
+                {
+                    <div>
+                        <label><input type="checkbox" value="@(item)" />@(item)</label>
+                    </div>
+
+                }
+            </div>
         </dd>
 
         <dt>
@@ -114,6 +117,29 @@
     }
 
     google.maps.event.addDomListener(window, 'load', initialize);
+
+</script>
+
+<script>
+
+    window.addEventListener('load', function () {
+
+        // IE does not know about the target attribute. It looks for srcElement
+        // This function will get the event target in a browser-compatible way
+        function getEventTarget(e) {
+            e = e || window.event;
+            return e.target || e.srcElement;
+        }
+
+        var equipList = document.getElementById('equipment-list');
+        equipList.onclick = function (event) {
+            event.preventDefault;
+            var target = getEventTarget(event);
+            console.log(target.value);
+        };
+
+    });
+    
 
 </script>
 
