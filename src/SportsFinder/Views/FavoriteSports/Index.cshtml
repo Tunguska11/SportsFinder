@@ -60,30 +60,26 @@
 <script type="text/javascript">
 
     window.addEventListener('load', function () {
-        console.log('window has loaded');
 
         console.log('@(MyUser.FavoriteSports)');
 
         var favoriteSports = '@(MyUser.FavoriteSports)';
         var favSportsList = favoriteSports.split('|');
-        var length = favoriteSports.length;
+        var length = favSportsList.length;
 
         for (var i = 0; i < length; i++) {            
 
             var li = document.getElementById('list-item-' + favSportsList[i]);
-            
-            
 
             var image = document.createElement("img");
             image.src = "/images/StartMenuFavorites.ico";
             image.className = "favorite-star";
-            image.id = "star";
+            image.id = "star-" + favSportsList[i];
             if (li !== null) {
                 if (!arr.includes(li.innerHTML))
                     arr.push(li.innerHTML);
                 li.appendChild(image);
-            }
-                
+            }                
         }
 
         // IE does not know about the target attribute. It looks for srcElement
@@ -99,7 +95,7 @@
             event.preventDefault;
             var target = getEventTarget(event);
 
-            console.log("Target -> " + target);
+            console.log(target);
 
             if (target.hasChildNodes)
                 console.log("has child");
@@ -114,12 +110,18 @@
                 var image = document.createElement("img");
                 image.src = "/images/StartMenuFavorites.ico";
                 image.className = "favorite-star";
-                image.id = "star";
+                image.id = "star-" + target.innerHTML;
                 target.appendChild(image);
             } else {
                 console.log("in else");
-                var img = target.querySelector("#star");
-                target.removeChild(img);
+                var img = target.childNodes;
+                console.log(img[1]);
+                target.removeChild(img[1]);
+
+                var index = arr.indexOf(target.innerHTML);
+                if (index > -1) {
+                    arr.splice(index, 1);
+                }
             }
         };
     });
