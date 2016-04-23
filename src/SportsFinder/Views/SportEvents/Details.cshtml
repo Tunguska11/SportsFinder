@@ -32,6 +32,7 @@
             </div>
             <div style="margin-top: 30px; margin-left: 20%">
                 <a class="btn btn-primary" id="commit-equipment-change">Bring Equipment</a>
+                <p id="information-tag"></p>
             </div>
         </dd>
 
@@ -179,7 +180,7 @@
                 dataType: "json",
                 data: datta,
                 success: function (mydata) {
-                    $("#UpdateDiv").html(mydata);
+                    $("#information-tag").html(mydata);
                     history.pushState('', "New URL:");
                 }
             });

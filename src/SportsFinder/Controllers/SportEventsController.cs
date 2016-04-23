@@ -121,7 +121,8 @@ namespace SportsFinder.Controllers
         public IActionResult UpdateEquipmentList(string equipList)
         {
 
-            return null;
+
+            return Json("Updated equipment for event!"); ;
         }
     }
     
