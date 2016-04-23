@@ -1,0 +1,97 @@
+﻿@model IEnumerable<SportsFinder.Models.Sport>
+
+@{
+    ViewData["Title"] = "Favorite Sports";
+}
+
+@* This javascript is just so it has scope for below html *@
+<script type="text/javascript">
+    var arr = [];
+    function getFavorites() {
+        console.log(arr);
+
+        var datta = {
+            'data': JSON.stringify(arr)
+        }
+
+        $.ajax({
+            url: "/FavoriteSports/MyMethod",
+            type: "POST",
+            dataType: "json",
+            data: datta,
+            success: function (mydata) {
+                $("#UpdateDiv").html(mydata);
+                history.pushState('', "New URL:");
+            }
+        });
+    }
+</script>
+
+<h1>Favorite Sports</h1>
+
+<div class="list-group">
+
+    <ul id="favorites-list" class="list-group">
+
+        <li class="list-group-item active my-list">
+            Sports
+        </li>
+
+
+        @foreach (var item in Model)
+        {
+            <li class="list-group-item my-list">@item.Name</li>
+        }
+
+    </ul>
+
+    <div class="container">
+        <button onclick="getFavorites()" id="favorites-submit-button" class="btn btn-primary favorites-button">Sumbit Favorites</button>
+    </div>
+
+</div>
+
+<div id="UpdateDiv" class="h3"></div>
+
+
+
+@* This javascript is the main logic *@
+<script type="text/javascript">
+
+    window.addEventListener('load', function () {
+        console.log('window has loaded');
+
+        // IE does not know about the target attribute. It looks for srcElement
+        // This function will get the event target in a browser-compatible way
+        function getEventTarget(e) {
+            e = e || window.event;
+            return e.target || e.srcElement;
+        }
+
+        //var arr = [];
+        var ul = document.getElementById('favorites-list');
+        ul.onclick = function (event) {
+            event.preventDefault;
+            var target = getEventTarget(event);
+
+            console.log(target);            
+
+            if (target.hasChildNodes)
+                console.log("has child");
+
+            var list = target.childNodes;
+
+            if (list.length <= 1) {
+
+                if (!arr.includes(target.innerHTML))
+                    arr.push(target.innerHTML);
+
+                var image = document.createElement("img");
+                image.src = "/images/StartMenuFavorites.ico";
+                image.className = "favorite-star";
+                image.id = "star";
+                target.appendChild(image);
+            }
+        };
+    });
+</script>
