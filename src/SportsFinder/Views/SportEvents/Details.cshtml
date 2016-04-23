@@ -126,9 +126,12 @@
 
 <script>
 
-    window.addEventListener('load', function () {
+    window.addEventListener('load', function () {       
 
         var equipArr = [];
+        var currUsr;
+        currUsr = '@(User.Identity.Name)';
+        
 
         // IE does not know about the target attribute. It looks for srcElement
         // This function will get the event target in a browser-compatible way
@@ -143,39 +146,34 @@
             var target = getEventTarget(event);
             
             if (target.checked) {
-
+                equipArr.push(target.value + ':' + currUsr);
             } else {
-                
+                var index = equipArr.indexOf(target.value + ':' + currUsr);
+                if (index > -1) {
+                    equipArr.splice(index, 1);
+                }
             }
-                
 
-            if (target.checked) {
-                equipArr.push(target.value);
-            }
+            console.log(equipArr);
         };
 
         var bringEquipmentButton = document.getElementById('commit-equipment-change');
         bringEquipmentButton.onclick = function () {
-            
 
+            var datta = {
+                'data': JSON.stringify(equipArr)
+            }
 
-
-
-
-            //var datta = {
-            //    'data': JSON.stringify(arr)
-            //}
-
-            //$.ajax({
-            //    url: "/FavoriteSports/SaveFavoriteSports",
-            //    type: "POST",
-            //    dataType: "json",
-            //    data: datta,
-            //    success: function (mydata) {
-            //        $("#UpdateDiv").html(mydata);
-            //        history.pushState('', "New URL:");
-            //    }
-            //});
+            $.ajax({
+                url: "/SportEvents/UpdateEquipmentList",
+                type: "POST",
+                dataType: "json",
+                data: datta,
+                success: function (mydata) {
+                    $("#UpdateDiv").html(mydata);
+                    history.pushState('', "New URL:");
+                }
+            });
         }
 
     });

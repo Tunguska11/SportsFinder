@@ -116,5 +116,12 @@ namespace SportsFinder.Controllers
             _context.SaveChanges();
             return RedirectToAction("Index");
         }
+
+        [HttpPost]
+        public IActionResult UpdateEquipmentList(string equipList)
+        {
+
+            return null;
+        }
     }
 }
