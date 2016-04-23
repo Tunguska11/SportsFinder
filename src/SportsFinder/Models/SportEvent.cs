@@ -29,5 +29,8 @@ namespace SportsFinder.Models
 
         [Display(Name = "Equipment List")]
         public string EquipmentList { get; set; }
+
+        [Display(Name = "List of Participants")]
+        public string RSVPList { get; set; }
     }
 }

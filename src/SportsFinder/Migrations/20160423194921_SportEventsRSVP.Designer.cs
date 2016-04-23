@@ -8,8 +8,8 @@ using SportsFinder.Models;
 namespace SportsFinder.Migrations
 {
     [DbContext(typeof(ApplicationDbContext))]
-    [Migration("20160411173153_SportEvent")]
-    partial class SportEvent
+    [Migration("20160423194921_SportEventsRSVP")]
+    partial class SportEventsRSVP
     {
         protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
@@ -195,6 +195,8 @@ namespace SportsFinder.Migrations
                     b.Property<int>("MaxPeopleAllowed");
 
                     b.Property<int>("PplAttendingCount");
+
+                    b.Property<string>("RSVPList");
 
                     b.HasKey("ID");
                 });
