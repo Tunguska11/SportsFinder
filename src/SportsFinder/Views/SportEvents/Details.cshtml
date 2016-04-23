@@ -9,8 +9,6 @@
 @{ 
     string Equipment = Model.EquipmentList;
     string[] EquipArray = Equipment.Split(',');
-
-    
 }
 
 <div>
@@ -82,9 +80,20 @@
     </dl>
 </div>
 
-<div class="container" style="margin: 20px">
-    <div id="map-canvas" style="width: 600px; height: 400px"></div>
+<div class="container" style="">
+    <div id="map-canvas" style="width: 600px; height: 400px; float: left"></div>
+    <div>
+
+        <h5>@Html.DisplayNameFor(model => model.RSVPList)</h5>
+        <ul class="list-group" id="equipment-list" style="float: left">
+            @foreach (string item in EquipArray)
+            {
+                <li class="list-group-item">@(item)</li>
+            }
+        </ul>
+    </div>
 </div>
+
 
 <script type="text/javascript" src="https://maps.googleapis.com/maps/api/js?key=AIzaSyAG8diNyE5CdFVLOvf9u7NlVoi6aEk8SH8"></script>
 <script type="text/javascript">
@@ -185,3 +194,28 @@
     @*<a asp-action="Edit" asp-route-id="@Model.ID" class="btn btn-danger">Edit</a> |*@
     <a asp-action="Index" class="btn btn-primary">Back to List</a>
 </p>
+
+<div class="container">
+<button onclick="getRSVP()" id="favorites-submit-button" class="btn btn-primary favorites-button">RSVP!</button>
+ </div>
+
+<script type="text/javascript">
+    var userName = '@User.Identity.Name';
+    function getRSVP() {
+
+        var datta = {
+            'data': userName
+        }
+
+        $.ajax({
+            url: "/FavoriteSports/SaveFavoriteSports",
+            type: "POST",
+            dataType: "json",
+            data: datta,
+            success: function (mydata) {
+                $("#UpdateDiv").html(mydata);
+                history.pushState('', "New URL:");
+            }
+        });
+    }
+</script>
