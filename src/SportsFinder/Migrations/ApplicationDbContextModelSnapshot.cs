@@ -195,6 +195,8 @@ namespace SportsFinder.Migrations
 
                     b.Property<int>("PplAttendingCount");
 
+                    b.Property<string>("RSVPList");
+
                     b.HasKey("ID");
                 });
 
