@@ -39,13 +39,10 @@ namespace SportsFinder.Controllers
         [HttpPost]
         public IActionResult SaveFavoriteSports(string data)
         {
+            System.Diagnostics.Debug.WriteLine("List to save = " + data);
+
             string[] strarr = data.Split(',');
             string sportsList = "";
-
-            for (int i = 0; i < strarr.Length; i++)
-            {
-                System.Diagnostics.Debug.WriteLine(i + " " + strarr[i]);
-            }
 
             Regex parser = new Regex(@"([a-z:A-Z:\s]+)");
             Match match = parser.Match(data);
@@ -53,7 +50,6 @@ namespace SportsFinder.Controllers
 
             while (match.Success)
             {
-                System.Diagnostics.Debug.WriteLine("Match Value = " + match.Value);
                 sportsList += match.Value + "|";
                 match = match.NextMatch();
             }

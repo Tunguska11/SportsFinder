@@ -138,6 +138,8 @@
 
     window.addEventListener('load', function () {       
 
+        console.log('@(Equipment)');
+
         var equipArr = [];
         var currUsr;
         currUsr = '@(User.Identity.Name)';
@@ -154,6 +156,8 @@
         equipList.onclick = function (event) {
             event.preventDefault;
             var target = getEventTarget(event);
+
+            console.log("target.value ===> -" + target.innerHTML);
             
             if (target.checked) {
                 equipArr.push(target.value + ':' + currUsr);
@@ -170,15 +174,17 @@
         var bringEquipmentButton = document.getElementById('commit-equipment-change');
         bringEquipmentButton.onclick = function () {
 
-            var datta = {
-                'data': JSON.stringify(equipArr)
+            console.log(equipArr);
+
+            var edata = {
+                'edata': JSON.stringify(equipArr)
             }
 
             $.ajax({
                 url: "/SportEvents/UpdateEquipmentList",
                 type: "POST",
                 dataType: "json",
-                data: datta,
+                data: edata,
                 success: function (mydata) {
                     $("#information-tag").html(mydata);
                     history.pushState('', "New URL:");
