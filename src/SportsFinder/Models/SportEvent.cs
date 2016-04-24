@@ -10,6 +10,9 @@ namespace SportsFinder.Models
     {
         public int ID { get; set; }
 
+        [Display(Name = "Event Creator")]
+        public string EventCreator { get; set; }
+
         [Display(Name = "Event Time")]
         public DateTime EventTime { get; set; }
 
