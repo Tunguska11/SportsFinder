@@ -3,6 +3,7 @@ using Microsoft.AspNet.Mvc;
 using Microsoft.AspNet.Mvc.Rendering;
 using Microsoft.Data.Entity;
 using SportsFinder.Models;
+using System;
 
 namespace SportsFinder.Controllers
 {
@@ -14,11 +15,19 @@ namespace SportsFinder.Controllers
         {
             _context = context;    
         }
-
+        
         // GET: SportEvents
-        public IActionResult Index()
+        public IActionResult Index(string searchString)
         {
-            return View(_context.SportEvent.ToList());
+
+            var sportEvent = from s in _context.SportEvent
+                           select s;
+            if (!String.IsNullOrEmpty(searchString))
+            {
+                sportEvent = sportEvent.Where(s => s.EventSport.Contains(searchString));
+                                        
+            }
+            return View(sportEvent.ToList());
         }
 
         // GET: SportEvents/Details/5

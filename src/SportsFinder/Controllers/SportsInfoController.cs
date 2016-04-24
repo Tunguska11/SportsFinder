@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
 using Microsoft.AspNet.Mvc;
+using SportsFinder.Models;
 
 // For more information on enabling MVC for empty projects, visit http://go.microsoft.com/fwlink/?LinkID=397860
 
@@ -10,6 +11,13 @@ namespace SportsFinder.Controllers
 {
     public class SportsInfoController : Controller
     {
+
+        private ApplicationDbContext _context;
+
+        public SportsInfoController(ApplicationDbContext context)
+        {
+            _context = context;
+        }
         // GET: /<controller>/
         public IActionResult Index()
         {
@@ -18,46 +26,110 @@ namespace SportsFinder.Controllers
 
         public IActionResult BasketBall()
         {
+            var sportEvent = from s in _context.SportEvent
+                             select s;
+            if (!String.IsNullOrEmpty("BasketBall"))
+            {
+                sportEvent = sportEvent.Where(s => s.EventSport.Contains("BasketBall"));
+
+            }
             return View();
         }
 
         public IActionResult Baseball()
         {
-            return View();
+            var sportEvent = from s in _context.SportEvent
+                             select s;
+            if (!String.IsNullOrEmpty("baseball"))
+            {
+                sportEvent = sportEvent.Where(s => s.EventSport.Contains("baseball"));
+
+            }
+            return View(sportEvent.ToList());
         }
 
         public IActionResult Soccer()
         {
+            var sportEvent = from s in _context.SportEvent
+                             select s;
+            if (!String.IsNullOrEmpty("soccer"))
+            {
+                sportEvent = sportEvent.Where(s => s.EventSport.Contains("soccer"));
+
+            }
             return View();
         }
 
         public IActionResult Hockey()
         {
+            var sportEvent = from s in _context.SportEvent
+                             select s;
+            if (!String.IsNullOrEmpty("hockey"))
+            {
+                sportEvent = sportEvent.Where(s => s.EventSport.Contains("hockey"));
+
+            }
             return View();
         }
 
         public IActionResult Cricket()
         {
+            var sportEvent = from s in _context.SportEvent
+                             select s;
+            if (!String.IsNullOrEmpty("cricket"))
+            {
+                sportEvent = sportEvent.Where(s => s.EventSport.Contains("cricket"));
+
+            }
             return View();
         }
 
         public IActionResult FrisbyGolf()
         {
+            var sportEvent = from s in _context.SportEvent
+                             select s;
+            if (!String.IsNullOrEmpty("frisbygolf"))
+            {
+                sportEvent = sportEvent.Where(s => s.EventSport.Contains("frisbygolf"));
+
+            }
+             
             return View();
         }
 
         public IActionResult RockClimbing()
         {
+            var sportEvent = from s in _context.SportEvent
+                             select s;
+            if (!String.IsNullOrEmpty("rockclimbing"))
+            {
+                sportEvent = sportEvent.Where(s => s.EventSport.Contains("rockclimbing"));
+
+            }
             return View();
         }
 
         public IActionResult MountainBiking()
         {
+            var sportEvent = from s in _context.SportEvent
+                             select s;
+            if (!String.IsNullOrEmpty("mountainbiking"))
+            {
+                sportEvent = sportEvent.Where(s => s.EventSport.Contains("mountainbiking"));
+
+            }
             return View();
         }
 
         public IActionResult Skateboarding()
         {
+            var sportEvent = from s in _context.SportEvent
+                             select s;
+            if (!String.IsNullOrEmpty("skateboarding"))
+            {
+                sportEvent = sportEvent.Where(s => s.EventSport.Contains("skateboarding"));
+
+            }
             return View();
         }
     }
