@@ -60,7 +60,12 @@ namespace SportsFinder.Controllers
         {
             if (ModelState.IsValid)
             {
-                _context.SportEvent.Add(sportEvent);
+                var creator = User.Identity.Name;
+                Console.Write(creator);
+                SportEvent event1 = sportEvent;
+                event1.EventCreator = creator;
+                _context.SportEvent.Add(event1);
+               
                 _context.SaveChanges();
                 return RedirectToAction("Index");
             }
