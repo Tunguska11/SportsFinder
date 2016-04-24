@@ -13,75 +13,108 @@
     
 }
 
-<div>
-    <h4>SportEvent</h4>
-    <hr />
-    <dl class="dl-horizontal">
-        <dt>
-            @Html.DisplayNameFor(model => model.EquipmentList)
-        </dt>
-        @*<dd>
-            @Html.DisplayFor(model => model.EquipmentList)
-        </dd>*@
-        <dd>
-            <div class="checkbox" id="equipment-list" style="float: left">
-                @foreach (string item in EquipArray)
-                {
-                    <div>
-                        <label><input type="checkbox" value="@(item)" />@(item)</label>
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/1.12.0/jquery.min.js"></script>
+<script>
+    $(document).ready(function () {
+        $("#RSVP").click(function () {
+            if($(this).text()=="Reservation For Event")
+            {
+                $(this).text("Cancel Resrevation");
+
+            }
+            else
+            {
+                $(this).text("Reservation For Event");
+
+            }
+
+        });
+
+    });
+</script>
+
+<table>
+    <tr>
+
+
+
+        <div>
+            <h4>SportEvent</h4>
+            <hr />
+            <dl class="dl-horizontal">
+                <dt>
+                    @Html.DisplayNameFor(model => model.EquipmentList)
+                </dt>
+                @*<dd>
+                        @Html.DisplayFor(model => model.EquipmentList)
+                    </dd>*@
+                <dd>
+                    <div class="checkbox" id="equipment-list" style="float: left">
+                        @foreach (string item in EquipArray)
+                        {
+                            <div>
+                                <label><input type="checkbox" value="@(item)" />@(item)</label>
+                            </div>
+                        }
                     </div>
-                }
-            </div>
-            <div style="margin-top: 30px; margin-left: 20%">
-                <a class="btn btn-primary" id="commit-equipment-change">Bring Equipment</a>
-            </div>
-        </dd>
+                    <div style="margin-top: 30px; margin-left: 20%">
+                        <a class="btn btn-primary" id="commit-equipment-change">Bring Equipment</a>
+                    </div>
+                </dd>
 
-        <dt>
-            @Html.DisplayNameFor(model => model.EventSport)
-        </dt>
-        <dd>
-            @Html.DisplayFor(model => model.EventSport)
-        </dd>
-        <dt>
-            @Html.DisplayNameFor(model => model.EventTime)
-        </dt>
-        <dd>
-            @Html.DisplayFor(model => model.EventTime)
-        </dd>
-        <dt>
-            @Html.DisplayNameFor(model => model.IsTentative)
-        </dt>
-        <dd>
-            @Html.DisplayFor(model => model.IsTentative)
-        </dd>
-        <dt>
-            @Html.DisplayNameFor(model => model.Latitude)
-        </dt>
-        <dd>
-            @Html.DisplayFor(model => model.Latitude)
-        </dd>
-        <dt>
-            @Html.DisplayNameFor(model => model.Longitude)
-        </dt>
-        <dd>
-            @Html.DisplayFor(model => model.Longitude)
-        </dd>
-        <dt>
-            @Html.DisplayNameFor(model => model.MaxPeopleAllowed)
-        </dt>
-        <dd>
-            @Html.DisplayFor(model => model.MaxPeopleAllowed)
-        </dd>
-        <dt>
-            @Html.DisplayNameFor(model => model.PplAttendingCount)
-        </dt>
-        <dd>
-            @Html.DisplayFor(model => model.PplAttendingCount)
-        </dd>
-    </dl>
-</div>
+                <dt>
+                    @Html.DisplayNameFor(model => model.EventSport)
+                </dt>
+                <dd>
+                    @Html.DisplayFor(model => model.EventSport)
+                </dd>
+                <dt>
+                    @Html.DisplayNameFor(model => model.EventTime)
+                </dt>
+                <dd>
+                    @Html.DisplayFor(model => model.EventTime)
+                </dd>
+                <dt>
+                    @Html.DisplayNameFor(model => model.IsTentative)
+                </dt>
+                <dd>
+                    @Html.DisplayFor(model => model.IsTentative)
+                </dd>
+                <dt>
+                    @Html.DisplayNameFor(model => model.Latitude)
+                </dt>
+                <dd>
+                    @Html.DisplayFor(model => model.Latitude)
+                </dd>
+                <dt>
+                    @Html.DisplayNameFor(model => model.Longitude)
+                </dt>
+                <dd>
+                    @Html.DisplayFor(model => model.Longitude)
+                </dd>
+                <dt>
+                    @Html.DisplayNameFor(model => model.MaxPeopleAllowed)
+                </dt>
+                <dd>
+                    @Html.DisplayFor(model => model.MaxPeopleAllowed)
+                </dd>
+                <dt>
+                    @Html.DisplayNameFor(model => model.PplAttendingCount)
+                </dt>
+                <dd>
+                    @Html.DisplayFor(model => model.PplAttendingCount)
+                </dd>
+            </dl>
+            
+    </tr>
+    <div style="margin-top: 30px; margin-left: 30%">
+        <a class="btn btn-primary" id="RSVP">Reservation For Event</a>
+    </div>
+    <tr>
 
+    </tr>
+    </div>
+</table>
 <div class="container" style="margin: 20px">
     <div id="map-canvas" style="width: 600px; height: 400px"></div>
 </div>
