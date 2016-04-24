@@ -33,7 +33,7 @@ namespace SportsFinder.Controllers
                 sportEvent = sportEvent.Where(s => s.EventSport.Contains("BasketBall"));
 
             }
-            return View();
+            return View(sportEvent.ToList());
         }
 
         public IActionResult Baseball()
@@ -57,7 +57,7 @@ namespace SportsFinder.Controllers
                 sportEvent = sportEvent.Where(s => s.EventSport.Contains("soccer"));
 
             }
-            return View();
+            return View(sportEvent.ToList());
         }
 
         public IActionResult Hockey()
@@ -69,7 +69,7 @@ namespace SportsFinder.Controllers
                 sportEvent = sportEvent.Where(s => s.EventSport.Contains("hockey"));
 
             }
-            return View();
+            return View(sportEvent.ToList());
         }
 
         public IActionResult Cricket()
@@ -81,7 +81,7 @@ namespace SportsFinder.Controllers
                 sportEvent = sportEvent.Where(s => s.EventSport.Contains("cricket"));
 
             }
-            return View();
+            return View(sportEvent.ToList());
         }
 
         public IActionResult FrisbyGolf()
@@ -94,7 +94,7 @@ namespace SportsFinder.Controllers
 
             }
              
-            return View();
+            return View(sportEvent.ToList());
         }
 
         public IActionResult RockClimbing()
@@ -106,7 +106,7 @@ namespace SportsFinder.Controllers
                 sportEvent = sportEvent.Where(s => s.EventSport.Contains("rockclimbing"));
 
             }
-            return View();
+            return View(sportEvent.ToList());
         }
 
         public IActionResult MountainBiking()
@@ -118,7 +118,7 @@ namespace SportsFinder.Controllers
                 sportEvent = sportEvent.Where(s => s.EventSport.Contains("mountainbiking"));
 
             }
-            return View();
+            return View(sportEvent.ToList());
         }
 
         public IActionResult Skateboarding()
@@ -130,7 +130,7 @@ namespace SportsFinder.Controllers
                 sportEvent = sportEvent.Where(s => s.EventSport.Contains("skateboarding"));
 
             }
-            return View();
+            return View(sportEvent.ToList());
         }
     }
 }
