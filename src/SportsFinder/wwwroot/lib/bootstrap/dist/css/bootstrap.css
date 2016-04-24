@@ -6283,6 +6283,8 @@ button.close {
 }
 .carousel {
   position: relative;
+  width: 80%;
+  margin-left: 10%;
 }
 .carousel-inner {
   position: relative;
