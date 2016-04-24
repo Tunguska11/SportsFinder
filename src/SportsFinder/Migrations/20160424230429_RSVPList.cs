@@ -5,7 +5,7 @@ using Microsoft.Data.Entity.Metadata;
 
 namespace SportsFinder.Migrations
 {
-    public partial class SportEventsRSVP : Migration
+    public partial class RSVPList : Migration
     {
         protected override void Up(MigrationBuilder migrationBuilder)
         {
