@@ -11,14 +11,6 @@
         <hr />
         <div asp-validation-summary="ValidationSummary.ModelOnly" class="text-danger"></div>
         <div class="form-group">
-            <label asp-for="EquipmentList" class="col-md-2 control-label"></label>
-            <div class="col-md-10">
-                <input asp-for="EquipmentList" class="form-control" style="float: left" placeholder="ex: harness, climbing shoes, chalk" />
-                <p class="col-md-3" style="float: left">(comma separated list)</p>
-                <span asp-validation-for="EquipmentList" class="text-danger" />
-            </div>
-        </div>
-        <div class="form-group">
             <label asp-for="EventSport" class="col-md-2 control-label"></label>
             <div class="col-md-10">
                 <select asp-for="EventSport" class="form-control dropdown-toggle" placeholder="Rock Climbing" data-toggle="dropdown">
@@ -36,9 +28,14 @@
                 <span asp-validation-for="EventSport" class="text-danger" />
             </div>
         </div>
-
-
-
+        <div class="form-group">
+            <label asp-for="EquipmentList" class="col-md-2 control-label"></label>
+            <div class="col-md-10">
+                <input asp-for="EquipmentList" class="form-control" style="float: left" placeholder="ex: harness, climbing shoes, chalk" />
+                <p class="col-md-3" style="float: left">(comma separated list)</p>
+                <span asp-validation-for="EquipmentList" class="text-danger" />
+            </div>
+        </div>
         <div class="form-group">
             <label asp-for="EventTime" class="col-md-2 control-label"></label>
             <div class="col-md-10">
@@ -46,8 +43,6 @@
                 <span asp-validation-for="EventTime" class="text-danger" />
             </div>
         </div>
-
-
         <div class="form-group">
             <label asp-for="IsTentative" class="col-md-2 control-label"></label>
             <div class="col-md-offset-3 checkbox">
