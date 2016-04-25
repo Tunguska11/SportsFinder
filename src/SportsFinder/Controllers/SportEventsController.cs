@@ -179,9 +179,10 @@ namespace SportsFinder.Controllers
             currentRsvpList += userName + "|";
 
             sportEvent.RSVPList = currentRsvpList;
+            sportEvent.PplAttendingCount++;
             _context.SaveChanges();
 
-            return Json("username " + userName + " added, id = " + eventId);
+            return Json(userName + " you have been added to the RSVP list!");
         }
     }
 }

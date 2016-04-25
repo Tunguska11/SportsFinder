@@ -37,15 +37,6 @@
                 <span asp-validation-for="EventSport" class="text-danger" />
             </div>
         </div>
-
-        @*<div class="form-group">
-            <label asp-for="EventSport" class="col-md-2 control-label"></label>
-            <div class="col-md-10">
-                <input asp-for="EventSport" class="form-control" />
-                <span asp-validation-for="EventSport" class="text-danger" />
-            </div>
-        </div>*@
-
         <div class="form-group">
             <label asp-for="EventTime" class="col-md-2 control-label"></label>
             <div class="col-md-10">
@@ -59,16 +50,6 @@
                 <input asp-for="IsTentative" />
             </div>
         </div>
-
-        @*<div class="form-group">
-            <div class="col-md-offset-2 col-md-10">
-                <div class="checkbox">
-                    <input asp-for="IsTentative" />
-                    <label asp-for="IsTentative"></label>
-                </div>
-            </div>
-        </div>*@
-
         <div class="form-group">
             <div class="col-md-7" style="float: left">
                 <div class="form-group">
@@ -108,7 +89,7 @@
         <div class="form-group">
             <label asp-for="PplAttendingCount" class="col-md-2 control-label"></label>
             <div class="col-md-10">
-                <input asp-for="PplAttendingCount" class="form-control" />
+                <input readonly asp-for="PplAttendingCount" class="form-control" value="@(Model.PplAttendingCount)" placeholder="@(Model.PplAttendingCount)"/>
                 <span asp-validation-for="PplAttendingCount" class="text-danger" />
             </div>
         </div>
@@ -119,6 +100,7 @@
         </div>
     </div>
     <input type="hidden" asp-for="EquipmentBeingBroughtList" value="@Model.EquipmentBeingBroughtList"/>
+    <input type="hidden" asp-for="RSVPList" value="@Model.RSVPList" />
 </form>
 
 <div>

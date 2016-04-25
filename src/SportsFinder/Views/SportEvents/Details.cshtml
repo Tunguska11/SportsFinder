@@ -74,7 +74,7 @@
         <dt>
             @Html.DisplayNameFor(model => model.PplAttendingCount)
         </dt>
-        <dd>
+        <dd id="pplAttending">
             @Html.DisplayFor(model => model.PplAttendingCount)
         </dd>
     </dl>
@@ -121,6 +121,10 @@
             {
                 <button disabled onclick="getRSVP()" id="favorites-submit-button" class="btn btn-success">Already RSVP'd</button>
             }
+        }
+        else
+        {
+            <button onclick="getRSVP()" id="favorites-submit-button" class="btn btn-success">RSVP!</button>
         }
     }
         
@@ -271,6 +275,7 @@
                 data: myContent,
                 success: function (mydata) {
                     $('#information-tag').html(mydata);
+                    $('#pplAttending').data = 4;
                     history.pushState('', 'New URL:');
                 }
             });
@@ -296,7 +301,10 @@
             data: data,
             success: function (mydata) {
                 $("#rsvpUpdateDiv").html(mydata);
-                console.log(mydata);
+
+                var attendingDD = document.getElementById('pplAttending');
+                console.log(attendingDD);
+
                 history.pushState('', "New URL:");
             }
         });
