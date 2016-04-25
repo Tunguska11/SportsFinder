@@ -91,7 +91,10 @@
                 {
                     foreach (string item in RsvpArr)
                     {
-                        <li class="list-group-item">@(item)</li>
+                        if (!item.Equals(""))
+                        {
+                            <li class="list-group-item">@(item)</li>
+                        }
                     }
                 }
             }
