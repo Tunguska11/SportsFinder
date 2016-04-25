@@ -104,6 +104,11 @@
     </div>
 </div>
 
+<div class="form-actions no-color" style="margin-top: 20px">
+    <a asp-action="Index" class="btn btn-primary">Back to List</a> |
+    <button onclick="getRSVP" id="favorites-submit-button" class="btn btn-success">RSVP!</button>
+</div>
+
 <!-- begin htmlcommentbox.com -->
 <div id="HCB_comment_box"><a href="http://www.htmlcommentbox.com">HTML Comment Box</a> is loading comments...</div>
 <link rel="stylesheet" type="text/css" href="http://www.htmlcommentbox.com/static/skins/default/skin.css" />
@@ -259,16 +264,6 @@
     
 
 </script>
-
-<p>
-    @*<a asp-action="Edit" asp-route-id="@Model.ID" class="btn btn-danger">Edit</a> |*@
-    <a asp-action="Index" class="btn btn-primary">Back to List</a>
-</p>
-
-<div class="container">
-<button onclick="getRSVP()" id="favorites-submit-button" class="btn btn-primary favorites-button">RSVP!</button>
- </div>
-
 <script type="text/javascript">
     var userName = '@User.Identity.Name';
     function getRSVP() {
