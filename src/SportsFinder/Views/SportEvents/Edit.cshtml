@@ -23,14 +23,14 @@
             <label asp-for="EventSport" class="col-md-2 control-label"></label>
             <div class="col-md-10">
                 <select asp-for="EventSport" class="form-control dropdown-toggle" placeholder="Rock Climbing" data-toggle="dropdown">
-                    <option value="BaseBall" selected>BaseBall</option>
-                    <option value="BasketBall">BasketBall</option>
+                    <option value="Baseball" selected>Baseball</option>
+                    <option value="Basketball">Basketball</option>
                     <option value="Cricket">Cricket</option>
-                    <option value="FrsibyGolf">Frsiby Golf</option>
+                    <option value="DiscGolf">Disc Golf</option>
                     <option value="Hockey">Hockey</option>
                     <option value="MountainBiking">Mountain Biking</option>
                     <option value="RockClimbing">Rock Climbing</option>
-                    <option value="SkateBoarding">Skateboarding</option>
+                    <option value="Skateboarding">Skateboarding</option>
                     <option value="Soccer">Soccer</option>
                 </select>
 
@@ -91,22 +91,6 @@
                 <div id="map-canvas" style="width: 500px; height: 300px"></div>
             </div>
         </div>
-
-        @*<div class="form-group">
-            <label asp-for="Latitude" class="col-md-2 control-label"></label>
-            <div class="col-md-10">
-                <input asp-for="Latitude" class="form-control" />
-                <span asp-validation-for="Latitude" class="text-danger" />
-            </div>
-        </div>
-        <div class="form-group">
-            <label asp-for="Longitude" class="col-md-2 control-label"></label>
-            <div class="col-md-10">
-                <input asp-for="Longitude" class="form-control" />
-                <span asp-validation-for="Longitude" class="text-danger" />
-            </div>
-        </div>*@
-
         <div class="form-group">
             <label asp-for="Address" class="col-md-2 control-label"></label>
             <div class="col-md-10">
@@ -134,10 +118,11 @@
             </div>
         </div>
     </div>
+    <input type="hidden" asp-for="EquipmentBeingBroughtList" value="@Model.EquipmentBeingBroughtList"/>
 </form>
 
 <div>
-    <a asp-action="Index">Back to List</a>
+    <a asp-action="Index" class="btn btn-primary">Back to List</a>
 </div>
 
 <script type="text/javascript" src="https://maps.googleapis.com/maps/api/js?key=AIzaSyAG8diNyE5CdFVLOvf9u7NlVoi6aEk8SH8"></script>
