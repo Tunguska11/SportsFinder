@@ -34,6 +34,8 @@ namespace SportsFinder.Models
         // of who is bringing it -> "harness:brad@gmail.com|shoes:hardik@gmail.com|"
         public string EquipmentBeingBroughtList { get; set; }
 
+        public string Address { get; set; }
+
         [Display(Name = "List of Participants")]
         public string RSVPList { get; set; }
     }

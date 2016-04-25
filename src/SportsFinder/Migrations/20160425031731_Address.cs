@@ -5,7 +5,7 @@ using Microsoft.Data.Entity.Metadata;
 
 namespace SportsFinder.Migrations
 {
-    public partial class BroughtEquipList : Migration
+    public partial class Address : Migration
     {
         protected override void Up(MigrationBuilder migrationBuilder)
         {
@@ -67,6 +67,7 @@ namespace SportsFinder.Migrations
                 {
                     ID = table.Column<int>(nullable: false)
                         .Annotation("SqlServer:ValueGenerationStrategy", SqlServerValueGenerationStrategy.IdentityColumn),
+                    Address = table.Column<string>(nullable: true),
                     EquipmentBeingBroughtList = table.Column<string>(nullable: true),
                     EquipmentList = table.Column<string>(nullable: true),
                     EventSport = table.Column<string>(nullable: true),

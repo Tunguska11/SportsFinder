@@ -179,6 +179,8 @@ namespace SportsFinder.Migrations
                     b.Property<int>("ID")
                         .ValueGeneratedOnAdd();
 
+                    b.Property<string>("Address");
+
                     b.Property<string>("EquipmentBeingBroughtList");
 
                     b.Property<string>("EquipmentList");
