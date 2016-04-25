@@ -30,6 +30,10 @@ namespace SportsFinder.Models
         [Display(Name = "Equipment List")]
         public string EquipmentList { get; set; }
 
+        // will contain the piece of equipment being brought with the username
+        // of who is bringing it -> "harness:brad@gmail.com|shoes:hardik@gmail.com|"
+        public string EquipmentBeingBroughtList { get; set; }
+
         [Display(Name = "List of Participants")]
         public string RSVPList { get; set; }
     }

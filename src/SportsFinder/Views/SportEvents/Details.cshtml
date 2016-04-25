@@ -2,6 +2,7 @@
 
 @{
     ViewData["Title"] = "Details";
+    int SportEventId = Model.ID;
 }
 
 <h2>Details</h2>
@@ -26,7 +27,7 @@
                 @foreach (string item in EquipArray)
                 {
                     <div>
-                        <label><input type="checkbox" value="@(item)" id="@(item)-id" />@(item)</label>
+                        <label><input type="checkbox" value="@(item)" id="@(item)-id"/>@(item)</label>
                     </div>
                 }
             </div>
@@ -146,8 +147,21 @@
         console.log('@(Equipment)');
 
         var equipArr = [];
+        var checkboxArr = [];
         var currUsr;
         currUsr = '@(User.Identity.Name)';
+        var broughtEquip = '@(Model.EquipmentBeingBroughtList)';
+        var broughtEquipSplit = broughtEquip.split('|');
+
+        for (var i = 0; i < broughtEquipSplit.length; i++) {
+            if (broughtEquipSplit[i] !== '') {
+                var equip = broughtEquipSplit[i].split(':');
+                var checkBoxItem = document.getElementById(equip[0] + '-id');
+                checkBoxItem.checked = true;
+                checkBoxItem.disabled = true;
+            }
+        }
+        
         
 
         // IE does not know about the target attribute. It looks for srcElement
@@ -160,20 +174,26 @@
         var equipList = document.getElementById('equipment-list');
         equipList.onclick = function (event) {
             event.preventDefault;
-            var target = getEventTarget(event);
+            var target = getEventTarget(event);            
 
             console.log("target.value ===> -" + target.innerHTML);
             
             if (target.checked) {
                 equipArr.push(target.value + ':' + currUsr);
+                checkboxArr.push(target);
             } else {
                 var index = equipArr.indexOf(target.value + ':' + currUsr);
+                var targetIndex = checkboxArr.indexOf(target);
                 if (index > -1) {
                     equipArr.splice(index, 1);
+                }
+                if (targetIndex > -1) {
+                    checkboxArr.splice(targetIndex, 1);
                 }
             }
 
             console.log(equipArr);
+            console.log(checkboxArr);
         };
 
         var bringEquipmentButton = document.getElementById('commit-equipment-change');
@@ -182,11 +202,16 @@
             console.log(equipArr);
             console.log(JSON.stringify(equipArr));
 
+            for (var i = 0; i < checkboxArr.length; i++) {
+                checkboxArr[i].disabled = true;
+            }
+
             // the key in this obj 'data' must match the same name as
             // the parameter accepted into the controller method 'UpdateEquipmentLIst'
             // in order to be mapped correctly
             var myContent = {
-                'data': JSON.stringify(equipArr)
+                'data': JSON.stringify(equipArr),
+                'eventId': '@(SportEventId)'
             }
 
             $.ajax({

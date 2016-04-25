@@ -143,25 +143,26 @@ namespace SportsFinder.Controllers
         }
 
         [HttpPost]
-        public IActionResult UpdateEquipmentList(string data)
+        public IActionResult UpdateEquipmentList(string data, int eventId)
         {
-            //string[] strarr = equipList.Split(',');
-            string sportsList = "";
+            string broughtEquipmentList = "";
 
             System.Diagnostics.Debug.WriteLine("Value = " + data);
 
-            //Regex parser = new Regex(@"([a-z:A-Z:\s]+)");
-            //Match match = parser.Match(equipList);
+            Regex parser = new Regex(@"([a-z:A-z\s+]+):([a-z:A-Z]+@[a-z:A-Z]+\.[a-z:A-Z]+)");
+            Match match = parser.Match(data);
 
+            while (match.Success)
+            {
+                broughtEquipmentList += match.Value + "|";
+                match = match.NextMatch();
+            }
 
-            //while (match.Success)
-            //{
-            //    System.Diagnostics.Debug.WriteLine("Match Value = " + match.Value);
-            //    sportsList += match.Value + "|";
-            //    match = match.NextMatch();
-            //}
+            SportEvent sportEvent = _context.SportEvent.Single(m => m.ID == eventId);
+            sportEvent.EquipmentBeingBroughtList = broughtEquipmentList;
+            _context.SaveChanges();
 
-            return Json("equipList = " + data);
+            return Json("This equipment is now marked as being brought by you!");
         }
     }
     
