@@ -21,14 +21,17 @@ namespace SportsFinder.Controllers
         private readonly IEmailSender _emailSender;
         private readonly ISmsSender _smsSender;
         private readonly ILogger _logger;
+        ApplicationDbContext _context;
 
         public ManageController(
+        ApplicationDbContext context,
         UserManager<ApplicationUser> userManager,
         SignInManager<ApplicationUser> signInManager,
         IEmailSender emailSender,
         ISmsSender smsSender,
         ILoggerFactory loggerFactory)
         {
+            _context = context;
             _userManager = userManager;
             _signInManager = signInManager;
             _emailSender = emailSender;
@@ -49,6 +52,8 @@ namespace SportsFinder.Controllers
                 : message == ManageMessageId.AddPhoneSuccess ? "Your phone number was added."
                 : message == ManageMessageId.RemovePhoneSuccess ? "Your phone number was removed."
                 : "";
+
+            ViewData["CurrentUser"] = _context.Users.First(u => u.Id == User.GetUserId());
 
             var user = await GetCurrentUserAsync();
             var model = new IndexViewModel
