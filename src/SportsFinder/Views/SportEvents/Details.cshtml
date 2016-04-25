@@ -10,6 +10,13 @@
 @{ 
     string Equipment = Model.EquipmentList;
     string[] EquipArray = Equipment.Split(',');
+    string RsvpList = Model.RSVPList;
+    string[] RsvpArr = null;
+    if (RsvpList != null)
+    {
+        RsvpArr = RsvpList.Split('|');
+    }
+
 }
 
 <div>
@@ -19,9 +26,6 @@
         <dt>
             @Html.DisplayNameFor(model => model.EquipmentList)
         </dt>
-        @*<dd>
-            @Html.DisplayFor(model => model.EquipmentList)
-        </dd>*@
         <dd>
             <div class="checkbox" id="equipment-list" style="float: left">
                 @foreach (string item in EquipArray)
@@ -61,20 +65,6 @@
         <dd>
             @Html.DisplayFor(model => model.Address)
         </dd>
-
-        @*<dt>
-            @Html.DisplayNameFor(model => model.Latitude)
-        </dt>
-        <dd>
-            @Html.DisplayFor(model => model.Latitude)
-        </dd>
-        <dt>
-            @Html.DisplayNameFor(model => model.Longitude)
-        </dt>
-        <dd>
-            @Html.DisplayFor(model => model.Longitude)
-        </dd>*@
-
         <dt>
             @Html.DisplayNameFor(model => model.MaxPeopleAllowed)
         </dt>
@@ -96,17 +86,45 @@
 
         <h5>@Html.DisplayNameFor(model => model.RSVPList)</h5>
         <ul class="list-group" id="equipment-list" style="float: left">
-            @foreach (string item in EquipArray)
-            {
-                <li class="list-group-item">@(item)</li>
+            @{
+                if (RsvpArr != null)
+                {
+                    foreach (string item in RsvpArr)
+                    {
+                        <li class="list-group-item">@(item)</li>
+                    }
+                }
             }
+            
         </ul>
     </div>
 </div>
 
 <div class="form-actions no-color" style="margin-top: 20px">
     <a asp-action="Index" class="btn btn-primary">Back to List</a> |
-    <button onclick="getRSVP" id="favorites-submit-button" class="btn btn-success">RSVP!</button>
+    @{
+        if (RsvpArr != null)
+        {
+            bool found = false;
+            foreach (var item in RsvpArr)
+            {
+                if (item == User.Identity.Name)
+                {
+                    found = true;
+                }
+            }
+            if (!found)
+            {
+                <button onclick="getRSVP()" id="favorites-submit-button" class="btn btn-success">RSVP!</button>
+            }
+            else
+            {
+                <button disabled onclick="getRSVP()" id="favorites-submit-button" class="btn btn-success">Already RSVP'd</button>
+            }
+        }
+    }
+        
+    <div id="rsvpUpdateDiv"></div>
 </div>
 
 <!-- begin htmlcommentbox.com -->
@@ -195,8 +213,6 @@
                 checkBoxItem.disabled = true;
             }
         }
-        
-        
 
         // IE does not know about the target attribute. It looks for srcElement
         // This function will get the event target in a browser-compatible way
@@ -265,20 +281,22 @@
 
 </script>
 <script type="text/javascript">
-    var userName = '@User.Identity.Name';
+    var userName = '@(User.Identity.Name)';
     function getRSVP() {
 
-        var datta = {
-            'data': userName
+        var data = {
+            'userName': userName,
+            'eventId': '@(Model.ID)'
         }
 
         $.ajax({
-            url: "/FavoriteSports/SaveFavoriteSports",
+            url: "/SportEvents/AddUserToRsvpList",
             type: "POST",
             dataType: "json",
-            data: datta,
+            data: data,
             success: function (mydata) {
-                $("#UpdateDiv").html(mydata);
+                $("#rsvpUpdateDiv").html(mydata);
+                console.log(mydata);
                 history.pushState('', "New URL:");
             }
         });

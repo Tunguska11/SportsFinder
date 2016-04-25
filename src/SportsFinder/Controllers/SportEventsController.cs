@@ -164,8 +164,25 @@ namespace SportsFinder.Controllers
 
             return Json("This equipment is now marked as being brought by you!");
         }
-    }
-    
 
+        [HttpPost]
+        public IActionResult AddUserToRsvpList(string userName, int eventId)
+        {
+            SportEvent sportEvent = _context.SportEvent.Single(m => m.ID == eventId);
+            string currentRsvpList = "";
+
+            if (sportEvent.RSVPList != null)
+            {
+                currentRsvpList += sportEvent.RSVPList;
+            }
+
+            currentRsvpList += userName + "|";
+
+            sportEvent.RSVPList = currentRsvpList;
+            _context.SaveChanges();
+
+            return Json("username " + userName + " added, id = " + eventId);
+        }
+    }
 }
 
