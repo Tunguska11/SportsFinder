@@ -134,6 +134,27 @@
             map: googleMap,
             title: eventTitle
         });
+
+        var placeRequest = {
+            location: location
+        };
+
+        var geocoder = new google.maps.Geocoder;
+        var infowindow = new google.maps.InfoWindow;
+
+        getAddress(geocoder, googleMap, infowindow, location, marker);
+    }
+
+    function getAddress(geocoder, googleMap, infowindow, location, marker) {
+        geocoder.geocode({ 'location': location }, function (results, status) {
+            if (status === google.maps.GeocoderStatus.OK) {
+                if (results[0]) {
+                    console.log('address => ' + results[0].formatted_address);
+                    infowindow.setContent(results[0].formatted_address);
+                    infowindow.open(googleMap, marker);
+                }
+            }
+        });
     }
 
     google.maps.event.addDomListener(window, 'load', initialize);
@@ -142,7 +163,7 @@
 
 <script>
 
-    window.addEventListener('load', function () {       
+    window.addEventListener('load', function () {
 
         console.log('@(Equipment)');
 
