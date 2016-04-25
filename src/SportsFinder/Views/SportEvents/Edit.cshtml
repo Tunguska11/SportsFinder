@@ -22,10 +22,30 @@
         <div class="form-group">
             <label asp-for="EventSport" class="col-md-2 control-label"></label>
             <div class="col-md-10">
-                <input asp-for="EventSport" class="form-control" />
+                <select asp-for="EventSport" class="form-control dropdown-toggle" placeholder="Rock Climbing" data-toggle="dropdown">
+                    <option value="BaseBall" selected>BaseBall</option>
+                    <option value="BasketBall">BasketBall</option>
+                    <option value="Cricket">Cricket</option>
+                    <option value="FrsibyGolf">Frsiby Golf</option>
+                    <option value="Hockey">Hockey</option>
+                    <option value="MountainBiking">Mountain Biking</option>
+                    <option value="RockClimbing">Rock Climbing</option>
+                    <option value="SkateBoarding">Skateboarding</option>
+                    <option value="Soccer">Soccer</option>
+                </select>
+
                 <span asp-validation-for="EventSport" class="text-danger" />
             </div>
         </div>
+
+        @*<div class="form-group">
+            <label asp-for="EventSport" class="col-md-2 control-label"></label>
+            <div class="col-md-10">
+                <input asp-for="EventSport" class="form-control" />
+                <span asp-validation-for="EventSport" class="text-danger" />
+            </div>
+        </div>*@
+
         <div class="form-group">
             <label asp-for="EventTime" class="col-md-2 control-label"></label>
             <div class="col-md-10">
@@ -34,14 +54,45 @@
             </div>
         </div>
         <div class="form-group">
+            <label asp-for="IsTentative" class="col-md-2 control-label"></label>
+            <div class="col-md-offset-3 checkbox">
+                <input asp-for="IsTentative" />
+            </div>
+        </div>
+
+        @*<div class="form-group">
             <div class="col-md-offset-2 col-md-10">
                 <div class="checkbox">
                     <input asp-for="IsTentative" />
                     <label asp-for="IsTentative"></label>
                 </div>
             </div>
-        </div>
+        </div>*@
+
         <div class="form-group">
+            <div class="col-md-7" style="float: left">
+                <div class="form-group">
+                    <label asp-for="Latitude" class="col-md-3 control-label"></label>
+                    <div class="col-md-5">
+                        <input asp-for="Latitude" id="lattd" class="form-control" placeholder="click map" readonly />
+                        <span asp-validation-for="Latitude" class="text-danger" />
+                    </div>
+                </div>
+                <div class="form-group">
+                    <label asp-for="Longitude" class="col-md-3 control-label"></label>
+                    <div class="col-md-5" style="float: left">
+                        <input asp-for="Longitude" id="lontd" class="form-control" placeholder="click map" readonly />
+                        <span asp-validation-for="Longitude" class="text-danger" />
+                    </div>
+                </div>
+            </div>
+            <div class="col-md-6" style="float: left">
+                <h4>Click to choose geolocation</h4>
+                <div id="map-canvas" style="width: 500px; height: 300px"></div>
+            </div>
+        </div>
+
+        @*<div class="form-group">
             <label asp-for="Latitude" class="col-md-2 control-label"></label>
             <div class="col-md-10">
                 <input asp-for="Latitude" class="form-control" />
@@ -53,6 +104,14 @@
             <div class="col-md-10">
                 <input asp-for="Longitude" class="form-control" />
                 <span asp-validation-for="Longitude" class="text-danger" />
+            </div>
+        </div>*@
+
+        <div class="form-group">
+            <label asp-for="Address" class="col-md-2 control-label"></label>
+            <div class="col-md-10">
+                <input asp-for="Address" id="address-id" class="form-control" placeholder="123 Some Road, Charlotte" readonly />
+                <span asp-validation-for="Address" class="text-danger" />
             </div>
         </div>
         <div class="form-group">
@@ -80,6 +139,84 @@
 <div>
     <a asp-action="Index">Back to List</a>
 </div>
+
+<script type="text/javascript" src="https://maps.googleapis.com/maps/api/js?key=AIzaSyAG8diNyE5CdFVLOvf9u7NlVoi6aEk8SH8"></script>
+<script type="text/javascript">
+
+    var map;
+    var mapMarkers = [];
+
+    function initialize() {
+        var eventLatLng = new google.maps.LatLng('@(Model.Latitude)', '@(Model.Longitude)'); // Charlotte
+
+        var mapOptions = {
+            zoom: 12,
+            center: eventLatLng,
+            mapTypeId: google.maps.MapTypeId.ROADMAP
+        };        
+
+        map = new google.maps.Map(document.getElementById("map-canvas"), mapOptions);
+
+        var marker = new google.maps.Marker({
+            position: eventLatLng,
+            map: map,
+            title: '@(Model.EventSport)'
+        });
+        mapMarkers.push(marker);
+        var address = document.getElementById('address-id');
+        var geocoder = new google.maps.Geocoder;
+        var infowindow = new google.maps.InfoWindow;
+        var location = eventLatLng;
+        getAddress(geocoder, map, infowindow, location, marker, address);
+
+        map.addListener('click', function (e) {
+
+            var latbox = document.getElementById('lattd');
+            latbox.value = e.latLng.lat();
+
+            var lonbox = document.getElementById('lontd');
+            lonbox.value = e.latLng.lng();
+
+            for (var i = 0; i < mapMarkers.length; i++) {
+                mapMarkers[i].setMap(null);
+            }
+
+            var marker = new google.maps.Marker({
+                position: { lat: e.latLng.lat(), lng: e.latLng.lng() },
+                map: map,
+                title: 'Your Event Location!'
+            });
+
+            mapMarkers.push(marker);
+
+            var address = document.getElementById('address-id');
+            var geocoder = new google.maps.Geocoder;
+            var infowindow = new google.maps.InfoWindow;
+            var location = {
+                lat: e.latLng.lat(),
+                lng: e.latLng.lng()
+            };
+            getAddress(geocoder, map, infowindow, location, marker, address);
+        });
+
+        var infoWindow = new google.maps.InfoWindow({map: map});
+    }
+
+    function getAddress(geocoder, googleMap, infowindow, location, marker, address) {
+        geocoder.geocode({ 'location': location }, function (results, status) {
+            if (status === google.maps.GeocoderStatus.OK) {
+                if (results[0]) {
+                    console.log('address => ' + results[0].formatted_address);
+                    infowindow.setContent(results[0].formatted_address);
+                    infowindow.open(googleMap, marker);
+                    address.value = results[0].formatted_address;
+                }
+            }
+        });
+    }
+
+    google.maps.event.addDomListener(window, 'load', initialize);
+</script>
 
 @section Scripts {
     <script src="~/lib/jquery/dist/jquery.min.js"></script>
