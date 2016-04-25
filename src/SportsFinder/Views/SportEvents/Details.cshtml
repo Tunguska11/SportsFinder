@@ -278,7 +278,6 @@
                 data: myContent,
                 success: function (mydata) {
                     $('#information-tag').html(mydata);
-                    $('#pplAttending').data = 4;
                     history.pushState('', 'New URL:');
                 }
             });
@@ -306,7 +305,8 @@
                 $("#rsvpUpdateDiv").html(mydata);
 
                 var attendingDD = document.getElementById('pplAttending');
-                console.log(attendingDD);
+                var count = parseInt(attendingDD.innerText);
+                attendingDD.innerText = (count + 1);
 
                 history.pushState('', "New URL:");
             }
