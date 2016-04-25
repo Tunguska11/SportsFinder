@@ -143,12 +143,12 @@ namespace SportsFinder.Controllers
         }
 
         [HttpPost]
-        public IActionResult UpdateEquipmentList(string equipList)
+        public IActionResult UpdateEquipmentList(string data)
         {
             //string[] strarr = equipList.Split(',');
             string sportsList = "";
 
-            System.Diagnostics.Debug.WriteLine("Value = " + equipList);
+            System.Diagnostics.Debug.WriteLine("Value = " + data);
 
             //Regex parser = new Regex(@"([a-z:A-Z:\s]+)");
             //Match match = parser.Match(equipList);
@@ -161,7 +161,7 @@ namespace SportsFinder.Controllers
             //    match = match.NextMatch();
             //}
 
-            return Json("Updated equipment for event!"); ;
+            return Json("equipList = " + data);
         }
     }
     

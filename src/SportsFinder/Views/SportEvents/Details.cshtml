@@ -180,19 +180,23 @@
         bringEquipmentButton.onclick = function () {
 
             console.log(equipArr);
+            console.log(JSON.stringify(equipArr));
 
-            var edata = {
-                'edata': JSON.stringify(equipArr)
+            // the key in this obj 'data' must match the same name as
+            // the parameter accepted into the controller method 'UpdateEquipmentLIst'
+            // in order to be mapped correctly
+            var myContent = {
+                'data': JSON.stringify(equipArr)
             }
 
             $.ajax({
-                url: "/SportEvents/UpdateEquipmentList",
-                type: "POST",
-                dataType: "json",
-                data: edata,
+                url: '/SportEvents/UpdateEquipmentList',
+                type: 'POST',
+                dataType: 'json',
+                data: myContent,
                 success: function (mydata) {
-                    $("#information-tag").html(mydata);
-                    history.pushState('', "New URL:");
+                    $('#information-tag').html(mydata);
+                    history.pushState('', 'New URL:');
                 }
             });
         }
