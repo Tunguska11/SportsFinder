@@ -67,10 +67,9 @@
                     });
                 }
 
-
-
                 infoWindow.setPosition(pos);
                 infoWindow.setContent('Your Location');
+
             }, function () {
                 handleLocationError(true, infoWindow, map.getCenter());
             });
@@ -78,7 +77,32 @@
 
             // If current location isn't available
         else {
+            var pos = new google.maps.LatLng(35.2033533, -80.9796095); // Charlotte
 
+            var mapOptions = {
+                zoom: 12,
+                center: pos,
+                mapTypeId: google.maps.MapTypeId.ROADMAP
+            };
+
+            map = new google.maps.Map(document.getElementById("map-canvas"), mapOptions);
+            infoWindow = new google.maps.InfoWindow({ map: map });
+
+            for (var i = 0; i < 15; i++) {
+                var marker = new google.maps.Marker({
+                    position: { lat: pos.lat - (Math.random() * (.1 - .00001)), lng: pos.lng - (Math.random() * (.1 - .00001)) },
+                    map: map,
+                    title: sportList[Math.floor(Math.random() * (8 - 0) + 0)]
+                });
+                var marker2 = new google.maps.Marker({
+                    position: { lat: pos.lat + (Math.random() * (.1 - .00001)), lng: pos.lng + (Math.random() * (.1 - .00001)) },
+                    map: map,
+                    title: sportList[Math.floor(Math.random() * (8 - 0) + 0)]
+                });
+            }
+
+            infoWindow.setPosition(pos);
+            infoWindow.setContent('Your Location');
         }
     }
 
