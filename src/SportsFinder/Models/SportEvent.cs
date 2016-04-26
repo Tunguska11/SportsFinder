@@ -10,6 +10,9 @@ namespace SportsFinder.Models
     {
         public int ID { get; set; }
 
+        [Display(Name = "Event Creator")]
+        public string EventCreator { get; set; }
+
         [Display(Name = "Event Time")]
         public DateTime EventTime { get; set; }
 
@@ -18,6 +21,7 @@ namespace SportsFinder.Models
 
         [Display(Name = "Tentative Event")]
         public bool IsTentative { get; set; }
+
         public double Longitude { get; set; }
         public double Latitude { get; set; }
 
