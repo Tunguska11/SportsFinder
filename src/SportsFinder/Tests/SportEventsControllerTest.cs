@@ -2,11 +2,11 @@
 using Microsoft.Data.Entity;
 using System;
 using System.Linq;
-using SportsFinder.Tests.Controllers;
 using SportsFinder.Data;
 using SportsFinder.Models;
 using Xunit;
 using Xunit.Abstractions;
+using SportsFinder.Controllers;
 
 namespace SportsFinder.Tests
 {
@@ -28,6 +28,7 @@ namespace SportsFinder.Tests
             // Seed some data
             _context.SportEvent.Add(new SportEvent()
             {
+                ID= 1,
                 EventTime = DateTime.Now,
                 EventSport = "Rock Climbing",
                 IsTentative = false,
@@ -39,6 +40,7 @@ namespace SportsFinder.Tests
             });
             _context.SportEvent.Add(new SportEvent()
             {
+                ID = 2,
                 EventTime = DateTime.Now,
                 EventSport = "Soccer",
                 IsTentative = false,
@@ -58,7 +60,7 @@ namespace SportsFinder.Tests
         public void GetSportEventRockClimbing_ReturnsRockClimbing()
         {
             // Act
-            var result = _controller.Details("Rock Climbing") as ViewResult;
+            var result = _controller.Details(1) as ViewResult;
 
             // Assert
             Assert.IsType(typeof(SportEvent), result.ViewData.Model);
@@ -70,17 +72,17 @@ namespace SportsFinder.Tests
         public void GetNonSportEvent_ReturnsNull()
         {
             // Act
-            var result = _controller.Details("Made up sport") as ViewResult;
+            var result = _controller.Details(99);
 
             // Assert
-            Assert.Null(result.ViewData.Model);
+            Assert.Null(result);
         }
 
         [Fact]
         public void AddEventSavesToDbWithCorrectId()
         {
             // Arrange
-            int sportEventId = 234;
+            int sportEventId = 100;
             SportEvent sportEvent = new SportEvent()
             {
                 ID = sportEventId,
@@ -110,6 +112,7 @@ namespace SportsFinder.Tests
             // Add sportevent to db
             SportEvent sportEvent = new SportEvent()
             {
+                ID=3,
                 EventTime = DateTime.Now,
                 EventSport = "Mountain Biking",
                 IsTentative = false,
@@ -122,7 +125,7 @@ namespace SportsFinder.Tests
             _controller.Create(sportEvent);
 
             // Get added sport event to edit it
-            var result = _controller.Edit("Mountain Biking") as ViewResult;
+            var result = _controller.Edit(3) as ViewResult;
             SportEvent retrievedEvent = (SportEvent)result.ViewData.Model;
 
             // Check PplAttendingCount is 2
@@ -133,7 +136,7 @@ namespace SportsFinder.Tests
             _controller.Edit(retrievedEvent);
 
             // Lookback up to verify change
-            var result2 = _controller.Details("Mountain Biking") as ViewResult;
+            var result2 = _controller.Details(3) as ViewResult;
             var changedEvent = (SportEvent)result2.ViewData.Model;
             Assert.Equal(4, changedEvent.PplAttendingCount);
         }
