@@ -185,6 +185,8 @@ namespace SportsFinder.Migrations
 
                     b.Property<string>("EquipmentList");
 
+                    b.Property<string>("EventCreator");
+
                     b.Property<string>("EventSport");
 
                     b.Property<DateTime>("EventTime");
