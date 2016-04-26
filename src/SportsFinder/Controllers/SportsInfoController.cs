@@ -88,9 +88,9 @@ namespace SportsFinder.Controllers
         {
             var sportEvent = from s in _context.SportEvent
                              select s;
-            if (!String.IsNullOrEmpty("frisbygolf"))
+            if (!String.IsNullOrEmpty("discgolf"))
             {
-                sportEvent = sportEvent.Where(s => s.EventSport.Contains("frisbygolf"));
+                sportEvent = sportEvent.Where(s => s.EventSport.Contains("discgolf"));
 
             }
 
