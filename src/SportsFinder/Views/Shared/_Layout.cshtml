@@ -1,6 +1,24 @@
 ﻿<!DOCTYPE html>
 <html>
     <head>
+
+        <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.12.0/jquery.min.js"></script>
+        <script>
+            $(document).ready(function () {
+                $(".ssdi").mouseenter(function () {
+                    $(this).animate({ left:'10px', height: '+=10px', width: '+=10px' });
+                    $(this).css({ "background-color": "#b3b3b3", "font-size": "200%" })
+
+                });
+                $(".ssdi").mouseleave(function () {
+                    $(this).animate({ height: '-=10px', width: '-=10px' });
+                    $(this).css({ "background-color": " #000000", "font-size": "100%" })
+
+                });
+
+            });
+        </script>
+
         <meta charset="utf-8" />
         <meta name="viewport" content="width=device-width, initial-scale=1.0" />
         <title>@ViewData["Title"] - Sports Finder</title>
@@ -28,31 +46,31 @@
                                 Sports
                             </a>
                         </li>
-                        <li>
+                        <li class="ssdi">
                             <a asp-controller="SportsInfo" asp-action="Basketball">BasketBall</a>
                         </li>
-                        <li>
+                        <li class="ssdi"> 
                             <a asp-controller="SportsInfo" asp-action="Baseball">Baseball</a>
                         </li>
-                        <li>
+                        <li class="ssdi">
                             <a asp-controller="SportsInfo" asp-action="Soccer">Soccer</a>
                         </li>
-                        <li>
+                        <li class="ssdi">
                             <a asp-controller="SportsInfo" asp-action="Hockey">Hockey</a>
                         </li>
-                        <li>
+                        <li class="ssdi">
                             <a asp-controller="SportsInfo" asp-action="Cricket">Cricket</a>
                         </li>
-                        <li>
+                        <li class="ssdi">
                             <a asp-controller="SportsInfo" asp-action="FrisbyGolf">Disc Golf</a>
                         </li>
-                        <li>
+                        <li class="ssdi">
                             <a asp-controller="SportsInfo" asp-action="RockClimbing">Rock Climbing</a>
                         </li>
-                        <li>
+                        <li class="ssdi">
                             <a asp-controller="SportsInfo" asp-action="MountainBiking">Mountain Biking</a>
                         </li>
-                        <li>
+                        <li class="ssdi">
                             <a asp-controller="SportsInfo" asp-action="Skateboarding">Skateboarding</a>
                         </li>
                     </ul>

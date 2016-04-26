@@ -9,6 +9,15 @@
 <p>
     <a asp-action="Create" class="btn btn-primary">Create New Event</a>
 </p>
+
+@using (Html.BeginForm())
+{
+    <p>
+        Find by name: @Html.TextBox("SearchString")
+        <input type="submit" value="Search" />
+    </p>
+}
+
 <table class="table">
     <tr>
         <th>
