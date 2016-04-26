@@ -28,18 +28,21 @@
             @Html.DisplayNameFor(model => CurrUser.FavoriteSports)
         </dt>        
         @{
-            string sportsString = CurrUser.FavoriteSports;
-            string[] sports = sportsString.Split('|');
-                
-            foreach (var item in sports)
+            if (CurrUser.FavoriteSports != null)
             {
-                if (!item.Equals(""))
+                string sportsString = CurrUser.FavoriteSports;
+                string[] sports = sportsString.Split('|');
+
+                foreach (var item in sports)
                 {
+                    if (!item.Equals(""))
+                    {
                     <dd>
                         @(item)
                     </dd>
+                        }
+                    }
                 }
             }
-        }   
     </dl>
 </div>
