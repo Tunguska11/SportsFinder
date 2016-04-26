@@ -89,7 +89,7 @@ namespace SportsFinder.Controllers
                 Console.Write(creator);
                 SportEvent event1 = sportEvent;
                 event1.EventCreator = creator;
-                event1.RSVPList = creator;
+                event1.RSVPList = creator + "|";
                 _context.SportEvent.Add(event1);
                  
                 
