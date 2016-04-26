@@ -85,7 +85,7 @@ namespace SportsFinder.Models
                  },
                  new Sport
                  {
-                     Name = "Frisby Golf",
+                     Name = "Disc Golf",
                      Type = "solo",
                      EquipmentList = new List<Equipment>()
                      {

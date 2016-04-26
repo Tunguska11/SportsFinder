@@ -36,17 +36,26 @@
             @Html.DisplayFor(model => model.IsTentative)
         </dd>
         <dt>
-            @Html.DisplayNameFor(model => model.Latitude)
+            @Html.DisplayNameFor(model => model.Address)
         </dt>
         <dd>
-            @Html.DisplayFor(model => model.Latitude)
+            @Html.DisplayFor(model => model.Address)
         </dd>
-        <dt>
-            @Html.DisplayNameFor(model => model.Longitude)
-        </dt>
-        <dd>
-            @Html.DisplayFor(model => model.Longitude)
-        </dd>
+
+
+        @*<dt>
+        @Html.DisplayNameFor(model => model.Latitude)
+    </dt>
+    <dd>
+        @Html.DisplayFor(model => model.Latitude)
+    </dd>
+    <dt>
+        @Html.DisplayNameFor(model => model.Longitude)
+    </dt>
+    <dd>
+        @Html.DisplayFor(model => model.Longitude)
+    </dd>*@
+
         <dt>
             @Html.DisplayNameFor(model => model.MaxPeopleAllowed)
         </dt>
@@ -63,8 +72,8 @@
     
     <form asp-action="Delete">
         <div class="form-actions no-color">
-            <input type="submit" value="Delete" class="btn btn-default" /> |
-            <a asp-action="Index">Back to List</a>
+            <input type="submit" value="Delete" class="btn btn-danger" /> |
+            <a asp-action="Index" class="btn btn-info">Back to List</a>
         </div>
     </form>
 </div>

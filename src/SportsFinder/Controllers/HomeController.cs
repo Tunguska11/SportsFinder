@@ -38,8 +38,6 @@ namespace SportsFinder.Controllers
 
         public IActionResult UserProfile()
         {
-            ViewData["Message"] = "Created by James Stell, Thomas Neil K, Hardik Thakkar & Gabriel Stevens";
-
             return View();
         }
 

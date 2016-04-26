@@ -8,8 +8,8 @@ using SportsFinder.Models;
 namespace SportsFinder.Migrations
 {
     [DbContext(typeof(ApplicationDbContext))]
-    [Migration("20160424192906_SportsEventModified")]
-    partial class SportsEventModified
+    [Migration("20160426013228_SportExample")]
+    partial class SportExample
     {
         protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
@@ -179,6 +179,10 @@ namespace SportsFinder.Migrations
                 {
                     b.Property<int>("ID")
                         .ValueGeneratedOnAdd();
+
+                    b.Property<string>("Address");
+
+                    b.Property<string>("EquipmentBeingBroughtList");
 
                     b.Property<string>("EquipmentList");
 
