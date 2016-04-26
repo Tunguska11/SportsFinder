@@ -9,6 +9,15 @@
 <p>
     <a asp-action="Create" class="btn btn-primary">Create New Event</a>
 </p>
+
+@using (Html.BeginForm())
+{
+    <p>
+        Find by name: @Html.TextBox("SearchString")
+        <input type="submit" value="Search" />
+    </p>
+}
+
 <table class="table">
     <tr>
         <th>
@@ -35,34 +44,46 @@
         <th></th>
     </tr>
     
-@foreach (var item in Model) {
-    <tr>
-        <td>
-            @Html.DisplayFor(modelItem => item.EquipmentList)
-        </td>
-        <td>
-            @Html.DisplayFor(modelItem => item.EventSport)
-        </td>
-        <td>
-            @Html.DisplayFor(modelItem => item.EventTime)
-        </td>
-        <td>
-            @Html.DisplayFor(modelItem => item.IsTentative)
-        </td>
-        <td>
-            @Html.DisplayFor(modelItem => item.Address);
-        </td>
-        <td>
-            @Html.DisplayFor(modelItem => item.MaxPeopleAllowed)
-        </td>
-        <td>
-            @Html.DisplayFor(modelItem => item.PplAttendingCount)
-        </td>
-        <td>
-            <a asp-action="Edit" asp-route-id="@item.ID">Edit</a> |
-            <a asp-action="Details" asp-route-id="@item.ID">Details</a> |
-            <a asp-action="Delete" asp-route-id="@item.ID">Delete</a>
-        </td>
+    @foreach (var item in Model)
+    {
+        <tr>
+            <td>
+                @Html.DisplayFor(modelItem => item.EquipmentList)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.EventSport)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.EventTime)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.IsTentative)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.Address);
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.MaxPeopleAllowed)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.PplAttendingCount)
+            </td>
+            <td>
+
+                <a asp-action="Details" asp-route-id="@item.ID">Details</a> |
+
+            </td>
+            <td>
+            @{
+                if (User.Identity.Name == item.EventCreator)
+                {
+                    <a asp-action="Edit" asp-route-id="@item.ID">Edit</a>
+                    <a asp-action="Delete" asp-route-id="@item.ID">Delete</a>
+                }
+            }
+            </td>
+      
+                
     </tr>
-}    
+                }
 </table>

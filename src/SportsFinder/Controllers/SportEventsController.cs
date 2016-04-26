@@ -4,6 +4,7 @@ using Microsoft.AspNet.Mvc.Rendering;
 using Microsoft.Data.Entity;
 using SportsFinder.Models;
 using System.Text.RegularExpressions;
+using System;
 
 namespace SportsFinder.Controllers
 {
@@ -17,9 +18,17 @@ namespace SportsFinder.Controllers
         }
 
         // GET: SportEvents
-        public IActionResult Index()
+        public IActionResult Index(string searchString)
         {
-            return View(_context.SportEvent.ToList());
+
+            var sportEvent = from s in _context.SportEvent
+                             select s;
+            if (!string.IsNullOrEmpty(searchString))
+            {
+                sportEvent = sportEvent.Where(s => s.EventSport.Contains(searchString));
+
+            }
+            return View(sportEvent.ToList());
         }
 
         // GET: SportEvents/Details/5
@@ -76,7 +85,14 @@ namespace SportsFinder.Controllers
 
             if (ModelState.IsValid)
             {
-                _context.SportEvent.Add(sportEvent);
+                var creator = User.Identity.Name;
+                Console.Write(creator);
+                SportEvent event1 = sportEvent;
+                event1.EventCreator = creator;
+                event1.RSVPList = creator;
+                _context.SportEvent.Add(event1);
+                 
+                
                 _context.SaveChanges();
                 return RedirectToAction("Index");
             }

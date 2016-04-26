@@ -1,4 +1,5 @@
-﻿<h1>Soccer</h1>
+﻿@model IEnumerable<SportsFinder.Models.SportEvent>
+<h1>Soccer</h1>
 
 <table>
 
@@ -30,4 +31,74 @@
         <a class="btn btn-primary" href="http://www.charlotte49ers.com/SportSelect.dbml?SPID=72433">UNCC Soccer Website</a>
 
     </tr>
+</table>
+
+
+<br />
+<br />
+<br />
+<br />
+
+<table class="table">
+    <tr>
+        <th>
+            @Html.DisplayNameFor(model => model.EquipmentList)
+        </th>
+        <th>
+
+            @Html.DisplayNameFor(model => model.EventSport)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.EventTime)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.IsTentative)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.Latitude)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.Longitude)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.MaxPeopleAllowed)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.PplAttendingCount)
+        </th>
+        <th></th>
+    </tr>
+
+    @foreach (var item in Model)
+    {
+        <tr>
+            <td>
+                @Html.DisplayFor(modelItem => item.EquipmentList)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.EventSport)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.EventTime)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.IsTentative)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.Latitude)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.Longitude)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.MaxPeopleAllowed)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.PplAttendingCount)
+            </td>
+            <td>
+                <a asp-action="Details" asp-controller="SportEvents" asp-route-id="@item.ID">Details</a> |
+            </td>
+        </tr>
+    }
 </table>
