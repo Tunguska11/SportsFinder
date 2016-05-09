@@ -72,7 +72,7 @@ namespace SportsFinder.Tests
         public void GetNonSportEvent_ReturnsNull()
         {
             // Act
-            var result = _controller.Details(99);
+            var result = _controller.Details(1738);
 
             // Assert
             Assert.Null(result);
@@ -82,7 +82,7 @@ namespace SportsFinder.Tests
         public void AddEventSavesToDbWithCorrectId()
         {
             // Arrange
-            int sportEventId = 100;
+            int sportEventId = 7;
             SportEvent sportEvent = new SportEvent()
             {
                 ID = sportEventId,
@@ -139,6 +139,36 @@ namespace SportsFinder.Tests
             var result2 = _controller.Details(3) as ViewResult;
             var changedEvent = (SportEvent)result2.ViewData.Model;
             Assert.Equal(4, changedEvent.PplAttendingCount);
+        }
+
+        [Fact]
+        public void UpdateSportEvent_RSVPList()
+        {
+            // Add sportevent to db
+            SportEvent sportEvent = new SportEvent()
+            {
+                ID = 12,
+                EventTime = DateTime.Now,
+                EventSport = "Mountain Biking",
+                IsTentative = false,
+                Longitude = 30.123,
+                Latitude = -80.432,
+                PplAttendingCount = 2,
+                MaxPeopleAllowed = 10,
+                EquipmentList = "mountain bike, helmet",
+                RSVPList = "Testguy@testman.com|"
+            };
+            _controller.Create(sportEvent);
+
+            // Make sure RSVPList works right
+            var result = _controller.Details(12) as ViewResult;
+            var changedEvent = (SportEvent)result.ViewData.Model;
+            Assert.Equal("Testguy@testman.com|", changedEvent.RSVPList);
+
+            //Add an RSVP and check again
+            var result2 = _controller.AddUserToRsvpList("Check@checkguy.com", 12);
+            Assert.Equal("Testguy@testman.com|Check@checkguy.com|", changedEvent.RSVPList);
+
         }
     }
 }

@@ -5,7 +5,7 @@ using Microsoft.Data.Entity.Metadata;
 
 namespace SportsFinder.Migrations
 {
-    public partial class sportstable3 : Migration
+    public partial class TestMigrations : Migration
     {
         protected override void Up(MigrationBuilder migrationBuilder)
         {
